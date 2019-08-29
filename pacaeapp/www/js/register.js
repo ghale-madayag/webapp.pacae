@@ -17,26 +17,25 @@ function showTab(n) {
       } else {
         $("#nextBtn").html("Next");
       }
-      //... and run a function that will display the correct step indicator:
       fixStepIndicator(n)
 }
 
 function validateForm() {
 
-    // This function deals with validation of the form fields
+
     var x, y, i, valid = true;
     x = $(".tab");
     y = x[currentTab].getElementsByTagName("input");
     z = x[currentTab].getElementsByClassName("invalid-feedback");
-    // A loop that checks every input field in the current tab:
+
     
     for (i = 0; i < y.length; i++) {
-      // If a field is empty...
+
       if (y[i].value == "") {
-        // add an "invalid" class to the field:
+
         y[i].className += " invalid";
         z[i].className += " was-validated";
-        // and set the current valid status to false
+
         valid = false;
       }else{
         y[i].classList.remove("invalid");
@@ -71,25 +70,21 @@ function validateForm() {
       }
     }
 
-    // If the valid status is true, mark the step as finished and valid:
     if (valid) {
       $(".step").eq(currentTab).addClass("finish");
     }
-    return valid; // return the valid status
+    return valid; 
   }
 
 function nextPrev(n){
 
     var x = $(".tab");
     if (n == 1 && !validateForm()) return false;
-    // Hide the current tab:
     x.eq(currentTab).css("display", "none");
-    // Increase or decrease the current tab by 1:
     currentTab = currentTab + n;
-    // if you have reached the end of the form...
+
     if (currentTab >= x.length) {
-        // ... the form gets submitted:
-        $("#regForm").trigger();
+        submitForm();
         return false;
     }
     showTab(currentTab);
@@ -101,13 +96,36 @@ function fixStepIndicator(n){
     
     for(i = 0; i < x.length; i++){
         x.eq(i).removeClass("active");
-        //console.log('hi');
     }
     x.eq(n).addClass('active');
-    //x[n].className += " active";
 }
 
 function validateEmail($email) {
   var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
   return emailReg.test( $email );
+}
+
+function submitForm(){
+  $("#stepContainer").css('display','none');
+  var formData = $("#form-register").serialize();
+  
+    $.ajax({
+        type: "POST",
+        url: "http://localhost/webapp.pacae/server/register-handler.php",
+        data: formData,
+        cache: false,
+        beforeSend: function(){
+          $("#loader").css("display", "block");
+          $(".footer").css("display", "none");
+        },
+        success: function(data){
+            $("#loader").css("display", "none");
+            if(data==1){
+                $(".form-signin").css("display", "none");
+                $("#thankyou").css("display", "block");
+            }else{
+                //toastSuccess("Successfully Updated", "Patient information successfully updated")
+            }
+        }
+    })
 }
