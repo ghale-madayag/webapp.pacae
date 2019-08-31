@@ -2,7 +2,15 @@ $(document).ready(function() {
     showTab(currentTab);
 
     $("#loginBtn").on('click', function(e){
-        window.location.assign('login.html');
+        window.location.assign('index.html');
+    });
+
+    $("#btLogin").on('click', function(e){
+      window.location.assign('index.html');
+    });
+
+    $("#contactUrl").on('click', function(e){
+      showHelp("https://www.pacae.org/index.php/contact-us/");
     });
 });
 
@@ -14,7 +22,9 @@ function showTab(n) {
 
     if (n==0) {
         $("#prevBtn").css('display','none');
+        $("#btLogin").css('display','inline');
     }else{
+        $("#btLogin").css('display','none');
         $("#prevBtn").css('display','inline');
     }
 
