@@ -4,7 +4,7 @@ $(document).ready(function() {
 
     $.ajax({
 			type: "POST",
-			url: "http://localhost/webapp.pacae/server/login-handler.php",
+			url: "https://pacae.org/webapp.pacae/server/login-handler.php",
 			cache: false,
 			data: formData,
 			async: false,

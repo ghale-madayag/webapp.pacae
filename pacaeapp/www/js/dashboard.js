@@ -5,7 +5,7 @@ $(document).ready(function(){
 function getAllEvent(){
     $.ajax({
         type: "POST",
-        url: "http://localhost/webapp.pacae/server/dashboard-handler.php",
+        url: "https://pacae.org/webapp.pacae/server/dashboard-handler.php",
         data: "getAllEvent=true",
         cache: false,
         beforeSend: function(){
@@ -18,7 +18,7 @@ function getAllEvent(){
                 var event = $("#eventContainer").empty();
                 $(json).each(function(i, val){
                     event.append('<div class="card my-4">'+
-                    '<img src="http://localhost/webapp.pacae/img/'+val.img+'" class="card-img-top" alt="...">'+
+                    '<img src="https://pacae.org/webapp.pacae/img/'+val.img+'" class="card-img-top" alt="...">'+
                     '<div class="card-body">'+
                         '<h5 class="card-title">'+val.title+'</h5>'+
                         '<p class="card-text">'+val.desc+'</p>'+

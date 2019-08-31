@@ -127,7 +127,7 @@ function submitForm(){
   
     $.ajax({
         type: "POST",
-        url: "http://localhost/webapp.pacae/server/register-handler.php",
+        url: "https://pacae.org/webapp.pacae/server/register-handler.php",
         data: formData,
         cache: false,
         beforeSend: function(){
