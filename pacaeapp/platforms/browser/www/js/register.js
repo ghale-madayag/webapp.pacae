@@ -1,6 +1,12 @@
 $(document).ready(function() {
     showTab(currentTab);
+
+    $("#loginBtn").on('click', function(e){
+        window.location.assign('login.html');
+    });
 });
+
+
 var currentTab = 0;
 function showTab(n) {
     var x = $(".tab");
@@ -128,4 +134,27 @@ function submitForm(){
             }
         }
     })
+}
+
+function showHelp(url){
+  var target = "_blank";
+  var options = "location=yes,hidden=yes";
+  inAppBrowserRef = cordova.InAppBrowser.open(url, target, options);
+  inAppBrowserRef.addEventListener('loadstart', loadStartCallBack);
+  inAppBrowserRef.addEventListener('loadstop', loadStopCallBack);
+  inAppBrowserRef.addEventListener('loaderror', loadErrorCallBack);
+}
+
+function loadStartCallBack() {
+  $("#loader").css("display", "block");
+}
+
+function loadStopCallBack() {
+
+  if (inAppBrowserRef != undefined) {
+      inAppBrowserRef.insertCSS({ code: "body{font-size: 25px;" });
+      $("#loader").css("display", "none");
+      inAppBrowserRef.show();
+  }
+
 }
