@@ -8,9 +8,6 @@ function getAllEvent(){
         url: "https://pacae.org/webapp.pacae/server/dashboard-handler.php",
         data: "getAllEvent=true",
         cache: false,
-        async: false,
-        processData: false,
-        contentType:false,
         beforeSend: function(){
           $("#loader").css("display", "block");
         },
