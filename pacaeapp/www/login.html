@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico"> -->
+    <title>Signin | PACAE</title>
+    <!-- Bootstrap core CSS -->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="css/custom.css" rel="stylesheet">
+    <link href="css/floating-labels.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,900&display=swap" rel="stylesheet">
+  </head>
+
+  <body>
+    <header class="text-center">
+        <img class="mt-4" src="img/logo.svg" alt="" width="128" height="128">
+        <p class="mt-2 lead text-light"><strong>Philippine Association for the Career Advancement of Educators</strong></p>
+    </header>
+    
+    <div class="container">
+      <form class="form-signin" id="login" method="post" enctype="multipart/form-data">
+          <p class="lead mt-4">
+            <strong>Login</strong>
+          </p>
+          <div class="form-label-group text-left">
+              <input type="email" id="email" name="email" class="form-control" placeholder="Email"  required>
+              <label for="email">Email</label>
+              <div class="invalid-feedback" id="emailErr">
+                  Enter your email
+              </div>
+          </div>
+          <div class="form-label-group text-left">
+              <input type="password" id="pword" name="pword" class="form-control" placeholder="Password" required>
+              <label for="pword">Password</label>
+              <div class="invalid-feedback" id="pwordErr">
+                  Enter your password
+              </div>
+          </div>
+          <button class="btn btn-lg btn-success btn-block" type="submit">
+              <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true" id="loader"></span>
+              <span>Sign in</span>
+          </button>
+          <div class="invalid-feedback text-center mt-5" id="errorLogin"></div>
+          <p class="mt-5 mb-3 text-muted text-center">Not a member? <a href="#" id="signUp" class="text-success">Sign up now</a></p>
+        </form>
+    </div>
+  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+  <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="js/login.js"></script>
+  <script type="text/javascript" src="js/index.js"></script>
+  </body>
+</html>

@@ -1,7 +1,21 @@
 $(document).ready(function(){
-    getAllEvent();
+    getLocalStorage();
+
+    $("#logout").on('click', function(){
+        localStorage.removeItem("id")
+        window.location.assign("login.html");
+    })
 })
 
+function getLocalStorage(){
+    var uid = localStorage.getItem("id");
+    if(uid == null){
+        window.location.assign("login.html");
+    }else{
+        $("body").css('display','block');
+        getAllEvent();
+    }
+}
 function getAllEvent(){
     $.ajax({
         type: "POST",
@@ -12,7 +26,6 @@ function getAllEvent(){
           $("#loader").css("display", "block");
         },
         success: function(data){
-            console.log(data)
             $("#loader").css("display", "none");
             if(data!=""){
 
@@ -22,7 +35,7 @@ function getAllEvent(){
                     event.append('<div class="card my-4">'+
                     '<img src="https://pacae.org/webapp.pacae/img/'+val.img+'" class="card-img-top" alt="...">'+
                     '<div class="card-body">'+
-                        '<h5 class="card-title">'+val.title, localStorage.getItem("id")+'</h5>'+
+                        '<h5 class="card-title">'+val.title+'</h5>'+
                         '<p class="card-text">'+val.desc+'</p>'+
                         '</div>'+
                         '<ul class="list-group list-group-flush">'+
