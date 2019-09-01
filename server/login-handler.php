@@ -10,7 +10,13 @@
         $sqlChk->execute(array($email,$enPword));
 
         if ($sqlChk->rowCount()) {
-            echo 1;
+            $row = $sqlChk->fetch(PDO::FETCH_OBJ);
+            $result[] = array(
+                'id' => $row->mem_id,
+                'status' => 1
+            );
+
+            echo json_encode($result);
         }else{
             echo 0;   
         }

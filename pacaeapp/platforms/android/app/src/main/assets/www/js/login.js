@@ -12,6 +12,7 @@ $(document).ready(function() {
 			contentType:false,
 			success: function(data) {
           if(data==1){
+            localStorage.setItem("id", "2");
             window.location.assign("dashboard.html");
           }else{
             $("#errorLogin").css("display","block");
