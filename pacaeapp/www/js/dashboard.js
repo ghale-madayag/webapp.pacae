@@ -8,10 +8,14 @@ function getAllEvent(){
         url: "https://pacae.org/webapp.pacae/server/dashboard-handler.php",
         data: "getAllEvent=true",
         cache: false,
+        async: false,
+        processData: false,
+        contentType:false,
         beforeSend: function(){
           $("#loader").css("display", "block");
         },
         success: function(data){
+            console.log(data)
             $("#loader").css("display", "none");
             if(data!=""){
                 var json = $.parseJSON(data);
