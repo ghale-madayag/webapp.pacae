@@ -1,7 +1,7 @@
 <?php
     require_once('handler.php');
 
-    //if (!empty($_POST['getAllEvent'])){
+    if (!empty($_POST['getAllEvent'])){
         $sql = $handler->query("SELECT * FROM events ORDER BY eve_id DESC");
 
         while ($row = $sql->fetch(PDO::FETCH_OBJ)) {
@@ -16,6 +16,6 @@
         }
 
         echo json_encode($result);
-    //  }
+    }
 
 ?>
