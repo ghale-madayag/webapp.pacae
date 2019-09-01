@@ -11,6 +11,8 @@ $(document).ready(function() {
 			processData: false,
 			contentType:false,
 			success: function(data) {
+          console.log(data)
+          debugger
           var json = $.parseJSON(data);
           $(json).each(function(i, val){
             if(val.status==1){

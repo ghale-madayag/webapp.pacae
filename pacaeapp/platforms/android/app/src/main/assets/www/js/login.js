@@ -11,13 +11,19 @@ $(document).ready(function() {
 			processData: false,
 			contentType:false,
 			success: function(data) {
-          if(data==1){
-            localStorage.setItem("id", "2");
-            window.location.assign("dashboard.html");
-          }else{
-            $("#errorLogin").css("display","block");
-            $("#errorLogin").html("Invalid email or password");
-          }
+          console.log(data)
+          debugger
+          var json = $.parseJSON(data);
+          $(json).each(function(i, val){
+            if(val.status==1){
+              localStorage.setItem("id", val.id);
+              window.location.assign("dashboard.html");
+            }else{
+              $("#errorLogin").css("display","block");
+              $("#errorLogin").html("Invalid email or password");
+            }
+          })
+          
       }
 		})
     e.preventDefault();
