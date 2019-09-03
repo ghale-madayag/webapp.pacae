@@ -24,41 +24,45 @@
         <a class="navbar-brand text-white" href="#">PACAE</a>
         <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-              <li class="nav-item">
-                  <a class="nav-link text-white" href="#" id="myevent"><i class="far fa-calendar-check"></i> <span class="ml-2">My Event</span></a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link text-white" href="#" id="settings"><i class="fas fa-cog"></i> <span class="ml-2">Profile</span></a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link text-white" href="#" id="logout"><i class="fas fa-sign-out-alt"></i> <span class="ml-2">Logout</span></a>
-              </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="#" id="dashboard"><i class="fas fa-tachometer-alt"></i> <span class="ml-2">Dashboard</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="#" id="myevent"><i class="far fa-calendar-check"></i> <span class="ml-2">My Event</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="#" id="settings"><i class="fas fa-cog"></i> <span class="ml-2">Profile</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="#" id="logout"><i class="fas fa-sign-out-alt"></i> <span class="ml-2">Logout</span></a>
+                </li>
             </ul>
         </div>
     </nav>
     <div class="container mt-5">
-        <form class="form-signin" id="login" method="post" enctype="multipart/form-data">
+        <form class="form-signin" id="profile" method="post" enctype="multipart/form-data">
           <p class="lead mt-4">
             <strong>Profile Settings</strong>
           </p>
           <div class="form-label-group">
-              <input type="text" id="fname" name="fname" class="form-control" placeholder="First name"  >
+              <input type="hidden" id="userid" name="userid" class="form-control">
+              <input type="text" id="fname" name="fname" class="form-control" placeholder="First name"  required>
               <label for="fname">First name</label>
           </div>
           <div class="form-label-group">
-              <input type="text" id="lname" name="lname" class="form-control" placeholder="Last name" >
+              <input type="text" id="lname" name="lname" class="form-control" placeholder="Last name" required>
               <label for="lname">Last name</label>
           </div>
           <div class="form-label-group">
-            <input type="text" id="mobile" name="mobile" class="form-control" placeholder="Mobile Number"  >
+            <input type="text" id="mobile" name="mobile" class="form-control" placeholder="Mobile Number"  required>
             <label for="mobile">Mobile Number</label>
           </div>
           <div class="form-label-group">
-              <input type="email" id="email" name="email" class="form-control" placeholder="Email"  >
+              <input type="email" id="email" name="email" class="form-control" placeholder="Email"  required>
               <label for="email">Email</label>
           </div>
           <div class="form-label-group">
-            <select class="form-control custom-select d-block w-100" id="region" name="region">
+            <select class="form-control custom-select d-block w-100" id="region" name="region" required>
                 <option selected disabled>Select Region</option>
                 <option value=" Region I">Region I </option>
                 <option value=" Region II">Region II </option>
@@ -80,7 +84,7 @@
               </select>
           </div>
           <div class="form-label-group">
-              <select class="form-control custom-select d-block w-100" id="position" name="position">
+              <select class="form-control custom-select d-block w-100" id="position" name="position" required>
                       <option selected disabled>Select Position </option>
                       <option value="PRESCHOOL TEACHER">PRESCHOOL TEACHER</option>
                       <option value="ELEM TEACHER 1">ELEM TEACHER 1</option>
@@ -112,30 +116,42 @@
               </select>
           </div>
           <div class="form-label-group">
-              <input type="text" id="school" name="school" class="form-control" placeholder="School" >
+              <input type="text" id="school" name="school" class="form-control" placeholder="School" required>
               <label for="school">School</label>
               <div id="emailfb" class="invalid-feedback">
                   Enter school
               </div>
           </div>
           <div class="form-label-group">
-              <input type="text" id="schooladd" name="schooladd" class="form-control" placeholder="School Address" >
+              <input type="text" id="schooladd" name="schooladd" class="form-control" placeholder="School Address" required>
               <label for="schooladd">School Address</label>
               <div id="emailfb" class="invalid-feedback">
                   Enter school address
               </div>
           </div>
-          <button class="btn btn-lg btn-success btn-block" type="submit">
-              <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true" id="loader"></span>
+          <button class="btn btn-lg btn-success btn-block" type="submit" id="loaderBtn">
               <span>Update</span>
           </button>
+            <div class="alert alert-success alert-dismissible fade show mt-3" role="alert" id="success">
+                Successfull Updated
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="alert alert-danger alert-dismissible fade show mt-3" id="error" role="alert">
+                    Error updating your profile
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+          <p class="mt-5 mb-3 text-muted text-center">Change your password? <a href="password.html" class="text-success">Click here</a></p>
         <div class="invalid-feedback text-center mt-5" id="errorLogin"></div>
       </form>
       </div>
+      <!--toast-->
   <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
   <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="js/profile.js"></script>
-  <script type="text/javascript" src="js/index.js"></script>
   <script type="text/javascript" src="js/custom.js"></script>
   </body>
 </html>

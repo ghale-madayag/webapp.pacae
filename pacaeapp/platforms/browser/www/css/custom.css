@@ -141,3 +141,7 @@ header {
 .container-fluid {
     background: #f5f5f5;
 }
+
+.alert{
+	display: none;
+}
