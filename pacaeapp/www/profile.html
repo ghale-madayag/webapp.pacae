@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico"> -->
+    <title>Profile | PACAE</title>
+    <!-- Bootstrap core CSS -->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="css/custom.css" rel="stylesheet">
+    <link href="css/floating-labels.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,900&display=swap" rel="stylesheet">
+    <link href="css/fontawesome-free-5.10.2-web/css/all.css" rel="stylesheet">
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-md navbar-dark bg-success fixed-top">
+        <button class="navbar-toggler text-white custom-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand text-white" href="#">PACAE</a>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+              <li class="nav-item">
+                  <a class="nav-link text-white" href="#" id="myevent"><i class="far fa-calendar-check"></i> <span class="ml-2">My Event</span></a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link text-white" href="#" id="settings"><i class="fas fa-cog"></i> <span class="ml-2">Profile</span></a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link text-white" href="#" id="logout"><i class="fas fa-sign-out-alt"></i> <span class="ml-2">Logout</span></a>
+              </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container mt-5">
+        <form class="form-signin" id="login" method="post" enctype="multipart/form-data">
+          <p class="lead mt-4">
+            <strong>Profile Settings</strong>
+          </p>
+          <div class="form-label-group">
+              <input type="text" id="fname" name="fname" class="form-control" placeholder="First name"  >
+              <label for="fname">First name</label>
+          </div>
+          <div class="form-label-group">
+              <input type="text" id="lname" name="lname" class="form-control" placeholder="Last name" >
+              <label for="lname">Last name</label>
+          </div>
+          <div class="form-label-group">
+            <input type="text" id="mobile" name="mobile" class="form-control" placeholder="Mobile Number"  >
+            <label for="mobile">Mobile Number</label>
+          </div>
+          <div class="form-label-group">
+              <input type="email" id="email" name="email" class="form-control" placeholder="Email"  >
+              <label for="email">Email</label>
+          </div>
+          <div class="form-label-group">
+            <select class="form-control custom-select d-block w-100" id="region" name="region">
+                <option selected disabled>Select Region</option>
+                <option value=" Region I">Region I </option>
+                <option value=" Region II">Region II </option>
+                <option value=" Region III">Region III </option>
+                <option value=" Region IV-A">Region IV-A </option>
+                <option value=" Region IV-B">Region IV-B </option>
+                <option value=" Region V">Region V </option>
+                <option value=" Region VI">Region VI </option>
+                <option value=" Region VII">Region VII </option>
+                <option value=" Region VIII">Region VIII </option>
+                <option value=" Region IX">Region IX </option>
+                <option value=" Region X">Region X </option>
+                <option value=" Region XI">Region XI </option>
+                <option value=" Region XII">Region XII </option>
+                <option value=" Region XIII">Region XIII </option>
+                <option value=" NCR">NCR </option>
+                <option value=" ARMM">ARMM </option>
+                <option value="CAR">CAR </option>
+              </select>
+          </div>
+          <div class="form-label-group">
+              <select class="form-control custom-select d-block w-100" id="position" name="position">
+                      <option selected disabled>Select Position </option>
+                      <option value="PRESCHOOL TEACHER">PRESCHOOL TEACHER</option>
+                      <option value="ELEM TEACHER 1">ELEM TEACHER 1</option>
+                      <option value="ELEM TEACHER 2">ELEM TEACHER 2</option>
+                      <option value="ELEM TEACHER 3">ELEM TEACHER 3</option>
+                      <option value="ELEM PRINCIPAL 1">ELEM PRINCIPAL 1</option>
+                      <option value="ELEM PRINCIPAL 2">ELEM PRINCIPAL 2</option>
+                      <option value="ELEM PRINCIPAL 3">ELEM PRINCIPAL 3</option>
+                      <option value="HS TEACHER 1">HS TEACHER 1</option>
+                      <option value="HS TEACHER 2">HS TEACHER 2</option>
+                      <option value="HS TEACHER 3">HS TEACHER 3</option>
+                      <option value="HS PRINCIPAL 1">HS PRINCIPAL 1</option>
+                      <option value="HS PRINCIPAL 2">HS PRINCIPAL 2</option>
+                      <option value="HS PRINCIPAL 3">HS PRINCIPAL 3</option>
+                      <option value="MASTER TEACHER 1">MASTER TEACHER 1</option>
+                      <option value="MASTER TEACHER 2">MASTER TEACHER 2</option>
+                      <option value="MASTER TEACHER 3">MASTER TEACHER 3</option>
+                      <option value="HEAD TEACHER 1">HEAD TEACHER 1</option>
+                      <option value="HEAD TEACHER 2">HEAD TEACHER 2</option>
+                      <option value="HEAD TEACHER 3">HEAD TEACHER 3</option>
+                      <option value="DISTRICT SUPERVISOR">DISTRICT SUPERVISOR</option>
+                      <option value="EDUCATION PROGRAM SUPERVISOR">EDUCATION PROGRAM SUPERVISOR </option>
+                      <option value="SCHOOLS DIVISION SUPERINTENDENT">SCHOOLS DIVISION SUPERINTENDENT</option>
+                      <option value="PRIVATE SCHOOL ADMINISTRATOR">PRIVATE SCHOOL ADMINISTRATOR</option>
+                      <option value="COLLEGE INSTRUCTOR/PROFESSOR">COLLEGE INSTRUCTOR/PROFESSOR</option>
+                      <option value="COLLEGE STUDENT">COLLEGE STUDENT</option>
+                      <option value="TEACHER APPLICANT">TEACHER APPLICANT</option>
+                      <option value="OTHERS">OTHERS</option>
+              </select>
+          </div>
+          <div class="form-label-group">
+              <input type="text" id="school" name="school" class="form-control" placeholder="School" >
+              <label for="school">School</label>
+              <div id="emailfb" class="invalid-feedback">
+                  Enter school
+              </div>
+          </div>
+          <div class="form-label-group">
+              <input type="text" id="schooladd" name="schooladd" class="form-control" placeholder="School Address" >
+              <label for="schooladd">School Address</label>
+              <div id="emailfb" class="invalid-feedback">
+                  Enter school address
+              </div>
+          </div>
+          <button class="btn btn-lg btn-success btn-block" type="submit">
+              <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true" id="loader"></span>
+              <span>Update</span>
+          </button>
+        <div class="invalid-feedback text-center mt-5" id="errorLogin"></div>
+      </form>
+      </div>
+  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+  <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="js/profile.js"></script>
+  <script type="text/javascript" src="js/index.js"></script>
+  <script type="text/javascript" src="js/custom.js"></script>
+  </body>
+</html>

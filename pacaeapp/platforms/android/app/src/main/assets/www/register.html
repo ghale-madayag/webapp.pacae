@@ -155,12 +155,17 @@
                     <span class="sr-only">Loading...</span>
                 </div>
             </div>
-            <footer class="footer mt-auto py-3">
-                <button type="button" class="btn btn-link btn-lg text-success" id="btLogin" style="font-size:16px;">Back to login</button>
-                <button type="button" class="btn btn-link btn-lg" id="prevBtn" onclick="nextPrev(-1)" style="font-size:16px;">Previous</button>
-                <button type="button" class="btn btn-lg btn-success" id="nextBtn" onclick="nextPrev(1)" style="float: right;">Next</button>
+            <footer class="fixed-bottom d-flex mt-5 justify-content-between bd-highlight align-self-end bg-light">
+                <div class="p-2 bd-highlight">
+                    <button type="button" class="btn btn-link btn-lg text-success" id="btLogin" style="font-size:16px;">Back to login</button>
+                    <button type="button" class="btn btn-link btn-lg" id="prevBtn" onclick="nextPrev(-1)" style="font-size:16px;">Previous</button>
+                </div>
+                <div class="p-2 bd-highlight">
+                    <button type="button" class="btn btn-lg btn-success mr-2" id="nextBtn" onclick="nextPrev(1)">Next</button>
+                </div>
             </footer>
         </form>
+        
         <div id="thankyou" class="text-center">
             <h1 class="display-4">Thank You!</h1>
             <p class="lead"><strong>Please check your email</strong> for further instructions on how to complete your account setup.</p>

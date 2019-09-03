@@ -1,10 +1,5 @@
 $(document).ready(function(){
     getLocalStorage();
-
-    $("#logout").on('click', function(){
-        localStorage.removeItem("id")
-        window.location.assign("login.html");
-    })
 })
 
 function getLocalStorage(){
