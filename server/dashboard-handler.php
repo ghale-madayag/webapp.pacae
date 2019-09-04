@@ -17,7 +17,22 @@
 
         echo json_encode($result);
     }elseif (isset($_POST['eventId'])) {
-        echo 1;
+        $sql = $handler->prepare("INSERT INTO participants(
+            `mem_id`,
+            `eve_id`,
+            `par_indate`) 
+            VALUES(
+                :userId,
+                :eventId,
+                now()
+            )");
+
+        $sql->execute(array(
+            'userId' => isset($_POST['userId']) ? $_POST['userId'] : null , 
+            'eventId' => isset($_POST['eventId']) ? $_POST['eventId'] : null
+        ));
+
+        echo $_POST['eventId'];
     }
 
 ?>

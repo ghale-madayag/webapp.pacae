@@ -31,3 +31,9 @@ function msg(i,val){
     '</div>');
     $(".alert").css('display','block');
 }
+
+function disableBtn(btn){
+    btn.html('Cancel this reservation');
+    btn.removeClass('btn-success');
+    btn.addClass('btn-secondary');
+}

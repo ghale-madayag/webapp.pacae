@@ -63,11 +63,12 @@
               </button>
             </div>
             <div class="modal-body">
-              <p>Are you sure you want to participate in this event?</p>
+              <p>Are you sure you want to attend in this event?</p>
+              <input type="hidden" name="userId" id="userId">
               <input type="hidden" name="eventId" id="eventId">
             </div>
             <div class="modal-footer">
-              <button type="submit" class="btn btn-success">Yes</button>
+              <button type="submit" class="btn btn-success" id="loaderBtn">Yes</button>
               <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
             </div>
           </div>
