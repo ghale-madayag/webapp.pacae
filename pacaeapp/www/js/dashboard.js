@@ -1,5 +1,35 @@
 $(document).ready(function(){
     getLocalStorage();
+
+    $("form#eventForm").on('submit', function(e){
+        $.ajax({
+            type: "POST",
+            url: "https://pacae.org/webapp.pacae/server/profile-handler.php",
+            cache: false,
+            data: formData,
+            async: false,
+            processData: false,
+            contentType:false,
+            beforeSend: function(){
+              //loaderVisible("loaderBtn");
+            },
+            success: function(data) {
+                console.log(data);
+                // loaderHide("loaderBtn","Update");
+                // console.log(data)
+                
+                // if(data==3){
+                //     msg("danger","Passwords don't match")
+                // }else if(data==2){
+                //     msg("danger","Current password doesn't match")
+                // }else{
+                //     $("input[type=password]").val("");
+                //     msg("success","Successfully updated")
+                // }
+            }
+          })
+        e.preventDefault();
+    });
 })
 
 function getLocalStorage(){
@@ -38,11 +68,16 @@ function getAllEvent(){
                         '<li class="list-group-item"><i class="fas fa-map-marker-alt"></i> <span class="ml-2">'+val.location+'</span></li>'+
                         '</ul>'+
                         '<div class="card-body">'+
-                        '<a href="#" class="btn btn-block btn-success">Going</a>'+
+                        '<button class="btn btn-block btn-success" onclick="getevent('+val.id+');">Going</button>'+
                         '</div>'+
                         '</div>');
                 })
             }
         }
     })
+}
+
+function getevent(val){
+    $("#eventId").val(val);
+    $('.eventModal').modal('show')
 }

@@ -16,6 +16,8 @@
         }
 
         echo json_encode($result);
+    }elseif (isset($_POST['eventId'])) {
+        echo 1;
     }
 
 ?>

@@ -8,7 +8,6 @@ $(document).ready(function(){
         $.ajax({
             type: "POST",
             url: "https://pacae.org/webapp.pacae/server/profile-handler.php",
-            //url: "http://localhost/webapp.pacae/server/profile-handler.php",
             cache: false,
             data: formData,
             async: false,
@@ -38,8 +37,7 @@ function userInfo(userId) {
 
     $.ajax({
         type: "POST",
-        //url: "https://pacae.org/webapp.pacae/server/profile-handler.php",
-        url: "http://localhost/webapp.pacae/server/profile-handler.php",
+        url: "https://pacae.org/webapp.pacae/server/profile-handler.php",
         data: "get_id="+userId,
         cache: false,
         success: function(data) {

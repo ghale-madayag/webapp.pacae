@@ -13,17 +13,12 @@
     "author": "Apache Cordova Team",
     "license": "Apache-2.0",
     "cordova": {
-        "plugins": {
-            "cordova-plugin-whitelist": {},
-            "cordova-plugin-inappbrowser": {}
-        },
+        "plugins": {},
         "platforms": [
             "android"
         ]
     },
     "dependencies": {
-        "cordova-android": "^8.0.0",
-        "cordova-plugin-inappbrowser": "^3.1.0",
-        "cordova-plugin-whitelist": "1"
+        "cordova-android": "^8.0.0"
     }
 }
