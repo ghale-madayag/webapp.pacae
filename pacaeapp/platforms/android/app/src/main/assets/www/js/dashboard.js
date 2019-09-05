@@ -15,12 +15,21 @@ $(document).ready(function(){
               loaderVisible("loaderBtn");
             },
             success: function(data) {
-                console.log(data)
                 loaderHide("loaderBtn","Yes");
                 $(".eventModal").modal('hide');
 
-                var btn = $("#btn_"+data);
-                disableBtn(btn);
+                var json = $.parseJSON(data);
+                $(json).each(function(i,val){
+                    var btn = $("#btn_"+val.eventId);
+                    if(val.status==1){
+                        disableBtn(btn);
+                    }else{
+                        enableBtn(btn)
+                    }
+                });
+
+                
+                
             }
           })
         e.preventDefault();

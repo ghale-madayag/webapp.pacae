@@ -7,7 +7,6 @@ $(document).ready(function(){
         $.ajax({
             type: "POST",
             url: "https://pacae.org/webapp.pacae/server/profile-handler.php",
-           // url: "http://localhost/webapp.pacae/server/profile-handler.php",
             cache: false,
             data: formData,
             async: false,

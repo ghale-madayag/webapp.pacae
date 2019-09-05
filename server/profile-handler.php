@@ -68,7 +68,7 @@
     
             $sql->execute(array(
                 'id' => $_POST['pid'],
-                'pword' => sha1($pword)
+                'pword' => sha1($npword)
             ));
                 echo 1;
             }else{

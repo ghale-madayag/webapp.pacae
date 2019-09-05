@@ -37,3 +37,9 @@ function disableBtn(btn){
     btn.removeClass('btn-success');
     btn.addClass('btn-secondary');
 }
+
+function enableBtn(btn){
+    btn.html('Attend');
+    btn.removeClass('btn-secondary');
+    btn.addClass('btn-success');   
+}
