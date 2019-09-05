@@ -11,7 +11,7 @@
             $parSql = $handler->prepare("SELECT * FROM participants WHERE mem_id=?");
             $parSql->execute(array($userId));
 
-            $att = $handler->prepare("SELECT COUNT(par_id) FROM participants");
+            $att = $handler->query("SELECT COUNT(par_id) FROM participants");
             $cnt = $att->rowCount();
 
             while($rowPar = $parSql->fetch(PDO::FETCH_OBJ)) {
