@@ -7,8 +7,8 @@
 
         while ($row = $sql->fetch(PDO::FETCH_OBJ)) {
             $attend = 0;
-            $parSql = $handler->prepare("SELECT * FROM participants WHERE mem_id = ?");
-            $parSql->execute(array($userId));
+            $parSql = $handler->prepare("SELECT * FROM participants WHERE mem_id=? AND eve_id=?");
+            $parSql->execute(array($userId, $row->eve_id));
 
             while ($rowPar = $parSql->fetch(PDO::FETCH_OBJ)) {
                 $attend = 1;    
