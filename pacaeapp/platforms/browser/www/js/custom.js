@@ -5,6 +5,11 @@ $(document).ready(function (p) {
     $("#settings").on('click', function(){
         window.location.assign("profile.html");
     })
+
+    $("#myevent").on('click', function(){
+        window.location.assign("events.html");
+    })
+
     $("#logout").on('click', function(){
         localStorage.removeItem("id")
         window.location.assign("login.html");
