@@ -32,22 +32,32 @@
 
         echo json_encode($result);
     }elseif (isset($_POST['eventId'])) {
-        $sql = $handler->prepare("INSERT INTO participants(
-            `mem_id`,
-            `eve_id`,
-            `par_indate`) 
-            VALUES(
-                :userId,
-                :eventId,
-                now()
-            )");
+        $userId = $_POST['userId'];
+        $event = $_POST['eventId'];
+        $sqlChk = $handler->prepare("SELECT * FROM participants WHERE eve_id=? AND mem_id=?");
+        $sqlChk->execute(array($event,$userId));
 
-        $sql->execute(array(
-            'userId' => isset($_POST['userId']) ? $_POST['userId'] : null , 
-            'eventId' => isset($_POST['eventId']) ? $_POST['eventId'] : null
-        ));
+        if ($sqlChk->rowCount()) {
+            $sql = $handler->prepare("DELETE FROM participants WHERE eve_id=? AND mem_id=?");
+            $sql->execute(array($event, $userId));
+            echo 1;
+        }else{
+            $sql = $handler->prepare("INSERT INTO participants(
+                `mem_id`,
+                `eve_id`,
+                `par_indate`) 
+                VALUES(
+                    :userId,
+                    :eventId,
+                    now()
+                )");
 
-        echo $_POST['eventId'];
+            $sql->execute(array(
+                'userId' => isset($_POST['userId']) ? $_POST['userId'] : null , 
+                'eventId' => isset($_POST['eventId']) ? $_POST['eventId'] : null
+            ));
+        }
+            echo 0;
     }
 
 ?>

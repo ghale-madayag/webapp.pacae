@@ -33,7 +33,7 @@ function msg(i,val){
 }
 
 function disableBtn(btn){
-    btn.html('Cancel this reservation');
+    btn.html('Cancel Reservation');
     btn.removeClass('btn-success');
     btn.addClass('btn-secondary');
 }
