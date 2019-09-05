@@ -40,7 +40,13 @@
         if ($sqlChk->rowCount()) {
             $sql = $handler->prepare("DELETE FROM participants WHERE eve_id=? AND mem_id=?");
             $sql->execute(array($event, $userId));
-            echo 1;
+            
+            $result[] = array(
+                'eventId' => $event,
+                'status' => 0 
+            );
+
+            echo json_encode($result);
         }else{
             $sql = $handler->prepare("INSERT INTO participants(
                 `mem_id`,
@@ -56,8 +62,15 @@
                 'userId' => isset($_POST['userId']) ? $_POST['userId'] : null , 
                 'eventId' => isset($_POST['eventId']) ? $_POST['eventId'] : null
             ));
+
+            $result[] = array(
+                'eventId' => $event,
+                'status' => 1 
+            );
+
+            echo json_encode($result);
         }
-            echo 0;
+            
     }
 
 ?>
