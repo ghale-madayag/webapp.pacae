@@ -2,9 +2,18 @@
     require_once('handler.php');
 
     if (!empty($_POST['getAllEvent'])){
+        $userId = $_POST['userId'];
         $sql = $handler->query("SELECT * FROM events ORDER BY eve_id DESC");
 
         while ($row = $sql->fetch(PDO::FETCH_OBJ)) {
+            $attend = 0;
+            $parSql = $handler->prepare("SELECT * FROM participants WHERE mem_id = ?");
+            $parSql->execute(array($userId));
+
+            while ($rowPar = $parSql->fetch(PDO::FETCH_OBJ)) {
+                $attend = 1;    
+            }
+
             $result[] = array(
                 'id' => $row->eve_id,
                 'title' => $row->eve_title,
@@ -12,7 +21,8 @@
                 'eveDate' => $row->eve_date,
                 'location' => $row->eve_location,
                 'img' => $row->eve_img,
-                'userId' => $_POST['userId'] 
+                'userId' => $_POST['userId'],
+                'attend' => $attend 
             );
         }
 
