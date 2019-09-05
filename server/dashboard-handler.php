@@ -11,9 +11,9 @@
             $parSql = $handler->prepare("SELECT * FROM participants WHERE mem_id=?");
             $parSql->execute(array($userId));
 
-            $att = $handler->prepare("SELECT COUNT(par_id) FROM participants WHERE eve_id=?");
+            $att = $handler->prepare("SELECT COUNT(par_id) AS cnt FROM participants WHERE eve_id=?");
             $att->execute(array($row->eve_id));
-            $cnt = $att->rowCount();
+            $cntRos = $att->fetch(PDO::FETCH_OBJ);
 
             while($rowPar = $parSql->fetch(PDO::FETCH_OBJ)) {
                 $parEve = $rowPar->eve_id;
@@ -32,7 +32,7 @@
                 'location' => $row->eve_location,
                 'img' => $row->eve_img,
                 'attend' => $attend,
-                'count' => $cnt 
+                'count' => $cntRos->cnt
             );
         }
 
