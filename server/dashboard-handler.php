@@ -11,7 +11,8 @@
                 'desc' => $row->eve_desc,
                 'eveDate' => $row->eve_date,
                 'location' => $row->eve_location,
-                'img' => $row->eve_img 
+                'img' => $row->eve_img,
+                'userId' => $_POST['userId'] 
             );
         }
 

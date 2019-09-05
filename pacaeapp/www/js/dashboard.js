@@ -15,21 +15,12 @@ $(document).ready(function(){
               loaderVisible("loaderBtn");
             },
             success: function(data) {
-
+                console.log(data)
                 loaderHide("loaderBtn","Yes");
                 $(".eventModal").modal('hide');
 
                 var btn = $("#btn_"+data);
                 disableBtn(btn);
-                
-                // if(data==3){
-                //     msg("danger","Passwords don't match")
-                // }else if(data==2){
-                //     msg("danger","Current password doesn't match")
-                // }else{
-                //     $("input[type=password]").val("");
-                //     msg("success","Successfully updated")
-                // }
             }
           })
         e.preventDefault();
@@ -46,10 +37,11 @@ function getLocalStorage(){
     }
 }
 function getAllEvent(){
+    var userId = localStorage.getItem('id');
     $.ajax({
         type: "POST",
         url: "https://pacae.org/webapp.pacae/server/dashboard-handler.php",
-        data: "getAllEvent=true",
+        data: "getAllEvent=true&userId="+userId,
         cache: false,
         beforeSend: function(){
           $("#loader").css("display", "block");
