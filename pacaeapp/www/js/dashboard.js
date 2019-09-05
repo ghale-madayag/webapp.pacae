@@ -17,19 +17,17 @@ $(document).ready(function(){
             success: function(data) {
                 loaderHide("loaderBtn","Yes");
                 $(".eventModal").modal('hide');
+                getAllEvent();
+                // var json = $.parseJSON(data);
+                // $(json).each(function(i,val){
+                //     var btn = $("#btn_"+val.eventId);
+                //     if(val.status==1){
+                //         disableBtn(btn);
+                //     }else{
+                //         enableBtn(btn)
+                //     }
+                // });
 
-                var json = $.parseJSON(data);
-                $(json).each(function(i,val){
-                    var btn = $("#btn_"+val.eventId);
-                    if(val.status==1){
-                        disableBtn(btn);
-                    }else{
-                        enableBtn(btn)
-                    }
-                });
-
-                
-                
             }
           })
         e.preventDefault();
@@ -79,6 +77,7 @@ function getAllEvent(){
                         '<ul class="list-group list-group-flush">'+
                         '<li class="list-group-item"><i class="far fa-calendar-alt"></i> <span class="ml-2">'+val.eveDate+'</span></li>'+
                         '<li class="list-group-item"><i class="fas fa-map-marker-alt"></i> <span class="ml-2">'+val.location+'</span></li>'+
+                        '<li class="list-group-item"><i class="fas fa-users"></i> <span class="ml-2">'+val.count+' Attendees</span></li>'+
                         '</ul>'+
                         '<div class="card-body">'+
                         '<button class="btn btn-block btn-'+btnRes+'" id="btn_'+val.id+'" onclick="getevent('+val.id+');">'+btnTxt+'</button>'+
