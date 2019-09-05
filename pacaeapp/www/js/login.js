@@ -12,10 +12,14 @@ $(document).ready(function() {
         processData: false,
         contentType:false,
         beforeSend: function(){
-          $("#loader").css("display", "block");
+          //$("#loader").css("display", "block");
+          
+          loaderVisible("loaderBtn");
+
         },
         success: function(data) {
-          $("#loader").css("display", "none");
+          //$("#loader").css("display", "none");
+          loaderHide("loaderBtn","Sign in");
             var json = $.parseJSON(data);
 
             if(data!=0){

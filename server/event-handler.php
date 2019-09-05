@@ -10,6 +10,10 @@
 
         while ($row = $sql->fetch(PDO::FETCH_OBJ)) {
             $attend = 1;
+
+            $att = $handler->prepare("SELECT COUNT(par_id) AS cnt FROM participants WHERE eve_id=?");
+            $att->execute(array($row->eve_id));
+            $cntRos = $att->fetch(PDO::FETCH_OBJ);
             
             $result[] = array(
                 'id' => $row->eve_id,
@@ -18,7 +22,8 @@
                 'eveDate' => $row->eve_date,
                 'location' => $row->eve_location,
                 'img' => $row->eve_img,
-                'attend' => $attend 
+                'attend' => $attend,
+                'count' => $cntRos->cnt 
             );
         }
 
