@@ -7,11 +7,16 @@
 
         while ($row = $sql->fetch(PDO::FETCH_OBJ)) {
             $attend = 0;
-            $parSql = $handler->prepare("SELECT * FROM participants WHERE mem_id=? AND eve_id=?");
+            $parSql = $handler->prepare("SELECT * FROM participants WHERE mem_id=?");
             $parSql->execute(array($userId, $row->eve_id));
 
             while ($rowPar = $parSql->fetch(PDO::FETCH_OBJ)) {
-                $attend = 1;    
+                $parEve = $rowPar->eve_id;
+                $eve = $row->eve_id;
+
+                if($parEve==$eve){
+                    $attend = 1;  
+                }     
             }
 
             $result[] = array(
