@@ -57,7 +57,7 @@ function getAllEvent(){
         },
         success: function(data){
             $("#loader").css("display", "none");
-            if(data!=""){
+            if(data!="null"){
 
                 var json = $.parseJSON(data);
                 var event = $("#eventContainer").empty();
@@ -85,6 +85,8 @@ function getAllEvent(){
                         '</div>'+
                         '</div>');
                 })
+            }else{
+                $("#eventContainer").html('<div class="card my-4"><div class="card-body text-center">No event found</div></div>');
             }
         }
     })

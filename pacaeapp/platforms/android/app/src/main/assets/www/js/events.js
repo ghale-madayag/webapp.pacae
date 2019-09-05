@@ -1,5 +1,38 @@
 $(document).ready(function(){
     getMyEvent();
+    $("form#eventForm").on('submit', function(e){
+        var formData = new FormData($(this)[0]);
+        $.ajax({
+            type: "POST",
+            url: "https://pacae.org/webapp.pacae/server/dashboard-handler.php",
+            cache: false,
+            data: formData,
+            async: false,
+            processData: false,
+            contentType:false,
+            beforeSend: function(){
+              loaderVisible("loaderBtn");
+            },
+            success: function(data) {
+                loaderHide("loaderBtn","Yes");
+                $(".eventModal").modal('hide');
+
+                var json = $.parseJSON(data);
+                $(json).each(function(i,val){
+                    var btn = $("#btn_"+val.eventId);
+                    if(val.status==1){
+                        disableBtn(btn);
+                    }else{
+                        enableBtn(btn)
+                    }
+                });
+
+                
+                
+            }
+          })
+        e.preventDefault();
+    }); 
 })
 
 function getMyEvent(){
@@ -13,11 +46,12 @@ function getMyEvent(){
           $("#loader").css("display", "block");
         },
         success: function(data){
-            $("#loader").css("display", "none");
-            if(data!=""){
 
+            var event = $("#eventContainer").empty();
+            $("#loader").css("display", "none");
+            if(data!="null"){
+                console.log(data)
                 var json = $.parseJSON(data);
-                var event = $("#eventContainer").empty();
                 $(json).each(function(i, val){
                     var btnRes, btnTxt;
                     if(val.attend==1){
@@ -42,7 +76,16 @@ function getMyEvent(){
                         '</div>'+
                         '</div>');
                 })
+            }else{
+                $("#eventContainer").html('<div class="card my-4"><div class="card-body text-center">No event found</div></div>');
             }
         }
     })
+}
+
+function getevent(val){
+    var userId = localStorage.getItem('id');
+    $("#eventId").val(val);
+    $("#userId").val(userId);
+    $('.eventModal').modal('show');
 }

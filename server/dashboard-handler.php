@@ -4,11 +4,15 @@
     if (!empty($_POST['getAllEvent'])){
         $userId = $_POST['userId'];
         $sql = $handler->query("SELECT * FROM events ORDER BY eve_id DESC");
+        
 
         while ($row = $sql->fetch(PDO::FETCH_OBJ)) {
             $attend = 0;
             $parSql = $handler->prepare("SELECT * FROM participants WHERE mem_id=?");
             $parSql->execute(array($userId));
+
+            $att = $handler->prepare("SELECT COUNT(par_id) FROM participants");
+            $cnt = $att->rowCount();
 
             while($rowPar = $parSql->fetch(PDO::FETCH_OBJ)) {
                 $parEve = $rowPar->eve_id;
@@ -26,7 +30,8 @@
                 'eveDate' => $row->eve_date,
                 'location' => $row->eve_location,
                 'img' => $row->eve_img,
-                'attend' => $attend 
+                'attend' => $attend,
+                'count' => $cnt 
             );
         }
 
