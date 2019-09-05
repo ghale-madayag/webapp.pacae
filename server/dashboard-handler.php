@@ -10,14 +10,14 @@
             $parSql = $handler->prepare("SELECT * FROM participants WHERE mem_id=?");
             $parSql->execute(array($userId, $row->eve_id));
 
-            while($rowPar = $parSql->fetch(PDO::FETCH_OBJ)) {
-                //$parEve = $rowPar->eve_id;
-                //$eve = $row->eve_id;
+            // while($rowPar = $parSql->fetch(PDO::FETCH_OBJ)) {
+            //     //$parEve = $rowPar->eve_id;
+            //     //$eve = $row->eve_id;
 
-                // if($parEve==$eve){
-                //     $attend = 1;  
-                // }     
-            }
+            //     // if($parEve==$eve){
+            //     //     $attend = 1;  
+            //     // }     
+            // }
 
             $result[] = array(
                 'id' => $row->eve_id,
