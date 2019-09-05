@@ -12,11 +12,11 @@
 
             while ($rowPar = $parSql->fetch(PDO::FETCH_OBJ)) {
                 $parEve = $rowPar->eve_id;
-                $eve = $row->eve_id;
+                // $eve = $row->eve_id;
 
-                if($parEve==$eve){
-                    $attend = 1;  
-                }     
+                // if($parEve==$eve){
+                //     $attend = 1;  
+                // }     
             }
 
             $result[] = array(
@@ -27,7 +27,7 @@
                 'location' => $row->eve_location,
                 'img' => $row->eve_img,
                 'userId' => $_POST['userId'],
-                'attend' => $attend 
+                'attend' => $parEve 
             );
         }
 
