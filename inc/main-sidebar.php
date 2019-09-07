@@ -13,13 +13,26 @@
     </div>
     <ul class="sidebar-menu" data-widget="tree">
     <li class="header">MAIN NAVIGATION</li>
-    <li>
+    <li id="dashboardPage">
         <a href="./">
         <i class="fa fa-dashboard"></i>
         <span>Dashboard</span>
         </a>
     </li>
-    <li>
+    <li class="treeview" style="height: auto;" id="top-msg">
+        <a href="#" id="top-msg-body">
+        <i class="fa fa fa-envelope"></i> <span>Messages</span>
+        <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+        </span>
+        </a>
+        <ul class="treeview-menu" style="" >
+        <li><a href="msg-new.php"><i class="fa fa-circle-o"></i> Compose</a></li>
+        <li><a href="#"><i class="fa fa-circle-o"></i> Inbox</a></li>
+        <li><a href="msg-sent.php" id="messageSent"><i class="fa fa-circle-o"></i> Sent Items</a></li>
+        </ul>
+    </li>
+    <li id="memberPage">
         <a href="members.php">
         <i class="fa fa-users"></i>
         <span>Members</span>

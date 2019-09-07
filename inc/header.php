@@ -15,3 +15,6 @@
 <!-- Google Font -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 <link rel="stylesheet" href="plugins/iCheck/flat/green.css">
+<link rel="stylesheet" href="dist/js/jquery-toast-plugin-master/dist/jquery.toast.min.css">
+<link rel="stylesheet" href="bower_components/select2/dist/css/select2.min.css">
+<link rel="stylesheet" href="dist/css/custom.css">

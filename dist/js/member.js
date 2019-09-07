@@ -1,5 +1,6 @@
 $(document).ready(function(){
     getAllMember();
+    $('[data-mask]').inputmask();
     $("form#form-member").on('submit', function(e){
         var formData = new FormData($(this)[0]);
         $.ajax({
@@ -11,16 +12,107 @@ $(document).ready(function(){
             processData: false,
             contentType: false,
             success: function(data){
-                console.log(data)
-                // if (data==1) {
-                //     $("input[type=text],input[type=number]").val("");
-                //     $("#patname").val('').change();
-                //     recentEsr();
-                //     toastSuccess("Successfully Registered", "You added new data <a href='all-esr.php'> View All</a>");
-                // }
+                if (data==1) {
+                    $("#addEvent").modal('hide');
+                    $("input[type=text],input[type=email]").val("");
+                    $("#region").val('-1');
+                    $("#position").val('-1');
+                    refresh("member-all");
+                    toastSuccess("Successfully Added", "You added new data");
+                }else{
+                    toastErr("Duplicate Entry", "Mobile number or Email address is already exist");
+                }
             }
         })
         e.preventDefault();
+    });
+
+    $("form#form-member-edit").on('submit', function(e){
+        var formData = new FormData($(this)[0]);
+        $.ajax({
+            type: "POST",
+            url: "data/member-handler.php",
+            data: formData,
+            cache: false,
+            async: false,
+            processData: false,
+            contentType: false,
+            success: function(data){
+                if (data==1) {
+                    $("#editModal").modal('hide');
+                    $("input[type=text],input[type=email]").val("");
+                    $("#region").val('-1');
+                    $("#position").val('-1');
+                    refresh("member-all");
+                    toastSuccess("Successfully Updated", "You updated the data");
+                }else{
+                    toastErr("Duplicate Entry", "Mobile number or Email address is already exist");
+                }
+            }
+        })
+        e.preventDefault();
+    });
+
+    $("#edit").on('click', function(){
+        var len = $("input[name='selectVal']:checked").length;
+
+        if(len==0){
+            alert('Please select data');
+        }else if(len>1){
+            alert('Please select only one data');
+        }else{
+            $.each($("input[name='selectVal']:checked"), function(){ 
+                var formData = $(this).val();
+                $.ajax({
+                    type: "POST",
+                    url:"data/member-handler.php",
+                    data: "get_mem="+formData,
+                    cache:false,
+                    success: function(data){
+                        var json = $.parseJSON(data);
+
+                        $(json).each(function(i,val){
+                            $("#userid").val(formData);
+                            $("#fnameEdit").val(val.fname);
+                            $("#lnameEdit").val(val.lname);
+                            $("#mobileEdit").val(val.mobile);
+                            $("#emailEdit").val(val.email);
+                            $("#regionEdit").val(val.region);
+                            $("#positionEdit").val(val.position);
+                            $("#schoolEdit").val(val.school);
+                            $("#schooladdEdit").val(val.schooladd);
+                        });
+                    }
+                }) 
+                $("#editModal").modal('show');
+            });
+        }
+    });
+
+    $("#del").on('click', function(){
+        var len = $("input[name='selectVal']:checked").length;
+
+        if(len==0){
+            alert('Please select data');
+        }else{
+           var del = confirm("Are you sure you want to delete the data?");
+
+           if(del==true){
+                $.each($("input[name='selectVal']:checked"), function(){
+                    var formData = $(this).val();
+                    $.ajax({
+                        type: "POST",
+                        url: "data/member-handler.php",
+                        data: "del=true&memId="+formData,
+                        cache: false,
+                        success: function(data){
+                            toastSuccess("Successfully Deleted", "All data has been deleted");
+                            refresh("member-all");
+                        }
+                    })
+                });
+           }
+        }
     })
 })
 
@@ -38,7 +130,7 @@ function getAllMember() {
             },
         ],
         "language": {
-            "emptyTable":     "No client available"
+            "emptyTable":     "No data available"
         },
         "ajax": {
             "url": "data/member-handler.php",
@@ -80,7 +172,7 @@ function getAllMember() {
 
     /*------------- custom toolbar ------------*/
      $("div.toolbar").html('<div class="mailbox-controls">'+
-         '<button type="button" class="btn btn-default btn-sm checkbox-toggle" title="Select All"><i class="fa fa-square"></i> Select All</button> '+
+         '<button type="button" class="btn btn-default btn-sm checkbox-toggle" title="Select All"><i class="fa fa-square-o"></i> Select All</button> '+
          '<div class="btn-group">'+
             '<button type="button" class="btn btn-default btn-sm" id="del" title="Delete"><i class="fa fa-trash"></i> Delete</button>'+
             '<button type="button" class="btn btn-default btn-sm" id="edit" title="Edit"><i class="fa fa-edit"></i> Edit</button>'+
