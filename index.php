@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Dashboard | CIA</title>
+  <title>Dashboard | PACAE</title>
   <?php include_once('inc/header.php')?>
 </head>
-<body class="hold-transition sidebar-mini skin-blue-light">
+<body class="hold-transition sidebar-mini skin-green-light">
 <div class="wrapper">
     <?php include_once('inc/header-menu.php') ?>
     <?php include_once('inc/main-sidebar.php');?>

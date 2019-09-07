@@ -1,9 +1,10 @@
 $(document).ready(function(){
-    $("form#form-pl").on('submit', function(e){
+    getAllMember();
+    $("form#form-member").on('submit', function(e){
         var formData = new FormData($(this)[0]);
         $.ajax({
             type: "POST",
-            url: "data/pl-handler.php",
+            url: "data/member-handler.php",
             data: formData,
             cache: false,
             async: false,
@@ -23,9 +24,9 @@ $(document).ready(function(){
     })
 })
 
-function getAllPL() {
+function getAllMember() {
     
-    var table = $('#pl-all').DataTable( {
+    var table = $('#member-all').DataTable( {
         "dom": '<"toolbar">Bfrtip',
         "lengthChange": false,
 		"ordering": false,
@@ -40,21 +41,24 @@ function getAllPL() {
             "emptyTable":     "No client available"
         },
         "ajax": {
-            "url": "data/pl-handler.php",
+            "url": "data/member-handler.php",
             "dataSrc": ""
         },
          "columns": [
             { "data": "id" },
-            { "data": "school_id" },
-			{ "data": "privatelessonday" },
-			{ "data": "privatelessontime" },
-            { "data": "price" },
-            { "data": "orderlist" },
-            { "data": "created" },
+            { "data": "fullname" },
+			{ "data": "mobile" },
+			{ "data": "email" },
+            { "data": "region" },
+            { "data": "position" },
+            { "data": "school" },
+            { "data": "schooladd" },
+            { "data": "indate" },
+            { "data": "status" },
 		],
 		'drawCallback': function(){
 			$('input[type="checkbox"]').iCheck({
-			   checkboxClass: 'icheckbox_flat-blue'
+			   checkboxClass: 'icheckbox_flat-green'
 			});
 		 },
          'columnDefs': [{
@@ -63,7 +67,7 @@ function getAllPL() {
          'orderable':false,
          'className': 'dt-body-center',
          'render': function (data, type, full, meta){
-             return '<input type="checkbox" name="selectCli" id="selectCli" value="'+data+'" data-rec="'+full.id+'">';
+             return '<input type="checkbox" name="selectVal" id="selectVal" value="'+data+'" data-rec="'+full.id+'">';
         }
         }],
         'order': [1, 'asc']
@@ -80,7 +84,7 @@ function getAllPL() {
          '<div class="btn-group">'+
             '<button type="button" class="btn btn-default btn-sm" id="del" title="Delete"><i class="fa fa-trash"></i> Delete</button>'+
             '<button type="button" class="btn btn-default btn-sm" id="edit" title="Edit"><i class="fa fa-edit"></i> Edit</button>'+
-			'<button type="button" class="btn btn-default btn-sm" title="Add" data-toggle="modal" data-target="#addEvent"><i class="fa fa-plus"></i> Add Event</button>'+
+			'<button type="button" class="btn btn-default btn-sm" title="Add" data-toggle="modal" data-target="#addEvent"><i class="fa fa-plus"></i> Add Member</button>'+
             '</div>'+
         '</div>');
 
