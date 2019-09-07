@@ -4,7 +4,7 @@
     if(isset($_POST['title'])){
         $title = $_POST['title'];
         $description = $_POST['desc'];
-        $txt = $title ."".$description;
+        $txt = $title ." ".$description;
         $sql = $handler->prepare("INSERT INTO message(
             `msg_title`,
             `msg_desc`,
