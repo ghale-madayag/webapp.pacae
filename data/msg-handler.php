@@ -1,7 +1,6 @@
 <?php
     require_once('handler.php');
-    require_once('../vendor/autoload.php'); 
-
+    require_once "../vendor/autoload.php";
     if(isset($_POST['title'])){
         $title = $_POST['title'];
         $description = $_POST['desc'];
