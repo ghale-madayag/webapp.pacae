@@ -58,9 +58,9 @@
         $message .= '<br/>';
         $message .= '<br/>';
         $message .= '<p>To verify your account, click the button below.</p>';
-        $message .= '<a href="#'.sha1($pword).'" style="background-color: #4980B5;border: 12px solid #4980B5;
-                    border-left: 24px solid #4980B5;
-                    border-right: 24px solid #4980B5;
+        $message .= '<a href="#'.sha1($pword).'" style="background-color: #0b7542;border: 12px solid #0b7542;
+                    border-left: 24px solid #0b7542;
+                    border-right: 24px solid #0b7542;
                     color: #fff;
                     display: inline-block;
                     font-family: Arial,Helvetica,sans-serif;
