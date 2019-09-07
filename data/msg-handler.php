@@ -1,6 +1,6 @@
 <?php
     require_once('handler.php');
-    require_once "../vendor/autoload.php";
+    //require_once "../vendor/autoload.php";
     if(isset($_POST['title'])){
         $title = $_POST['title'];
         $description = $_POST['desc'];
@@ -26,16 +26,28 @@
         $cnt = 0;
         
         foreach ($_POST['contact'] as $key) {
+            $results ="";
             $conSql = $handler->prepare("SELECT mem_contact FROM member WHERE mem_id =?");
             $conSql->execute(array($key));
             $row = $conSql->fetch(PDO::FETCH_OBJ);
             $contact = str_replace("-","",$row->mem_contact);
             $contact = str_replace("(63) ","63",$contact);
 
-            message($contact,$txt);
-            $sql = $handler->prepare('INSERT INTO message_sent(`msg_id`,`mem_id`,`ms_status`) VALUES(?,?,1)');
-            $sql->execute(array($lastInsert, $key));
-            $cnt++;
+            $results=itexmo($contact,$txt,'TR-ABEGA370289_6W9D7');
+
+            if ($results == ""){
+                echo "iTexMo: No response from server!!!
+                Please check the METHOD used (CURL or CURL-LESS). If you are using CURL then try CURL-LESS and vice versa.	
+                Please CONTACT US for help. ";	
+            }else if ($results == 0){
+                $sql = $handler->prepare('INSERT INTO message_sent(`msg_id`,`mem_id`,`ms_status`) VALUES(?,?,1)');
+                $sql->execute(array($lastInsert, $key));
+                $cnt++;
+                echo "Message Sent!";
+            }else{	
+                echo "Error Num ". $results . " was encountered!";
+            }
+            
             
         }
 
@@ -79,14 +91,40 @@
     }
 
 function message($to,$txt){
-    $basic  = new \Nexmo\Client\Credentials\Basic('b3b13e90', 'PPAoIuSYVKpPG6YR');
-    $client = new \Nexmo\Client($basic);
 
-    $message = $client->message()->send([
-        'to' => $to,
-        'from' => "PACAE",
-        'text' => $txt
-    ]);
+    // $basic  = new \Nexmo\Client\Credentials\Basic('b3b13e90', 'PPAoIuSYVKpPG6YR');
+    // $client = new \Nexmo\Client($basic);
+
+    // $message = $client->message()->send([
+    //     'to' => $to,
+    //     'from' => "PACAE",
+    //     'text' => $txt
+    // ]);
 }
+
+// function itexmo($number,$message,$apicode){
+//     $ch = curl_init();
+//     $itexmo = array('1' => $number, '2' => $message, '3' => $apicode);
+//     curl_setopt($ch, CURLOPT_URL,"https://www.itexmo.com/php_api/api.php");
+//     curl_setopt($ch, CURLOPT_POST, 1);
+//      curl_setopt($ch, CURLOPT_POSTFIELDS, 
+//               http_build_query($itexmo));
+//     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+//     return curl_exec ($ch);
+//     curl_close ($ch);
+// }
+
+function itexmo($number,$message,$apicode){
+    $url = 'https://www.itexmo.com/php_api/api.php';
+    $itexmo = array('1' => $number, '2' => $message, '3' => $apicode);
+    $param = array(
+        'http' => array(
+            'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+            'method'  => 'POST',
+            'content' => http_build_query($itexmo),
+        ),
+    );
+    $context  = stream_context_create($param);
+    return file_get_contents($url, false, $context);}
 
 ?>
