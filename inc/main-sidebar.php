@@ -4,10 +4,10 @@
     <!-- Sidebar user panel -->
     <div class="user-panel">
     <div class="pull-left image">
-        <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+        <img src="img/avatar.png" class="img-circle" alt="User Image">
     </div>
     <div class="pull-left info">
-        <p>Juan Dela Cruz</p>
+        <p>Administrator PACAE</p>
         <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
     </div>
     </div>
@@ -28,9 +28,14 @@
         </a>
         <ul class="treeview-menu" style="" >
         <li><a href="msg-new.php"><i class="fa fa-circle-o"></i> Compose</a></li>
-        <li><a href="#"><i class="fa fa-circle-o"></i> Inbox</a></li>
         <li><a href="msg-sent.php" id="messageSent"><i class="fa fa-circle-o"></i> Sent Items</a></li>
         </ul>
+    </li>
+    <li id="eventPage">
+        <a href="events.php">
+        <i class="fa fa-calendar"></i>
+        <span>Events</span>
+        </a>
     </li>
     <li id="memberPage">
         <a href="members.php">

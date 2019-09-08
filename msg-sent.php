@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Member | PACAE</title>
+  <title>Sent Message | PACAE</title>
   <?php include_once('inc/header.php')?>
 </head>
 <body class="hold-transition sidebar-mini skin-green-light">
@@ -18,10 +18,11 @@
         </h1>
         <ol class="breadcrumb">
           <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-          <li class="active">Member</li>
+          <li><a href="#"><i class="fa fa fa-envelope"></i> Message</a></li>
+          <li class="active">Sent</li>
         </ol>
     </section>
-    <section class="content col-md-8">
+    <section class="content">
         <div class="box">
             <div class="box-header"></div>
             <div class="box-body">
@@ -39,15 +40,6 @@
                         </thead>
                     </table>
                 </form>
-            </div>
-        <!-- /.box-body -->
-        </div>
-    </section>
-    <section class="content col-md-4">
-        <div class="box">
-            <div class="box-header"></div>
-            <div class="box-body">
-                
             </div>
         <!-- /.box-body -->
         </div>

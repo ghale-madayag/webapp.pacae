@@ -36,7 +36,7 @@
                     </div>
                     <div class="form-group">
                         <label for="title">Message Description</label>
-                        <textarea class="form-control input-lg" rows="6" placeholder="Enter your message..." spellcheck="false" name="desc" id="desc" required></textarea>
+                        <textarea class="form-control input-lg" maxlength="100" rows="6" placeholder="Enter your message 100 Max Characters per SMS" spellcheck="false" name="desc" id="desc" required></textarea>
                     </div>
             </div>
         <!-- /.box-body -->
@@ -48,9 +48,15 @@
     </section>
     <section class="content col-md-4">
         <div class="box">
-            <div class="box-header"></div>
+            <div class="box-header with-border">
+                <h3 class="box-title">Recently Sent</h3>
+                <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                </div>
+            </div>
             <div class="box-body">
-                
+                <ul class="products-list product-list-in-box"></ul>
             </div>
         <!-- /.box-body -->
         </div>

@@ -6,7 +6,7 @@
         $pword = $_POST['pword'];
         $enPword = sha1($pword);
 
-        $sqlChk = $handler->prepare("SELECT mem_id,mem_email, mem_pword FROM member WHERE mem_email= ? AND mem_pword= ?");
+        $sqlChk = $handler->prepare("SELECT mem_id,mem_email, mem_pword FROM member WHERE mem_email= ? AND mem_pword= ? AND mem_status=1");
         $sqlChk->execute(array($email,$enPword));
 
         if ($sqlChk->rowCount()) {

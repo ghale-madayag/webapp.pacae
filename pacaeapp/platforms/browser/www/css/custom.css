@@ -49,6 +49,11 @@ input.invalid {
     padding: 28px;
 }
 
+#error{
+    display:none;
+    padding: 28px;
+}
+
 @-webkit-keyframes spinner-border {
 	to {
 		-webkit-transform: rotate(360deg);

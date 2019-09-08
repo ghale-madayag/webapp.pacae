@@ -92,3 +92,26 @@ select2-container--default .select2-results__option[aria-selected=true] {
 		cursor: pointer;
 		z-index: 999999;
 	}
+.bg-gray-2{
+	color: #f1f1f1;
+	background-color: #009688;
+}
+.bg-black-2{
+	color: #f1f1f1;
+	background-color: #607D8B;
+}
+
+.bg-teal-dark{
+	color: #f1f1f1;
+	background-color: #444;
+	/* text-transform: uppercase; */
+}
+
+.bg-teal-lighter{
+	color:#f1f1f1;
+	background-color: #62A39F;
+}
+
+h3#user-info {
+    text-transform: lowercase;
+}

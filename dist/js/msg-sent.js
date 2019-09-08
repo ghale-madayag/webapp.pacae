@@ -1,5 +1,33 @@
 $(document).ready(function(){
     getMsgSent()
+
+    $("#del").on('click', function(){
+        var len = $("input[name='selectVal']:checked").length;
+
+        if(len==0){
+            alert('Please select data');
+        }else{
+           var del = confirm("Are you sure you want to delete the data?");
+
+           if(del==true){
+                $.each($("input[name='selectVal']:checked"), function(){
+                    var formData = $(this).val();
+                    var msgId = $(this).data('msg')
+                    $.ajax({
+                        type: "POST",
+                        url: "data/msg-handler.php",
+                        data: "del="+formData+"&msgId="+msgId,
+                        cache: false,
+                        success: function(data){
+                            console.log(data)
+                            toastSuccess("Successfully Deleted", "The data has been deleted");
+                            refresh("member-all");
+                        }
+                    })
+                });
+           }
+        }
+    })
 });
 
 function getMsgSent() {
@@ -41,7 +69,7 @@ function getMsgSent() {
          'orderable':false,
          'className': 'dt-body-center',
          'render': function (data, type, full, meta){
-             return '<input type="checkbox" name="selectVal" id="selectVal" value="'+data+'" data-rec="'+full.id+'">';
+             return '<input type="checkbox" name="selectVal" id="selectVal" value="'+data+'" data-msg="'+full.msg_id+'">';
         }
         }],
         'order': [1, 'asc']
@@ -62,13 +90,4 @@ function getMsgSent() {
 
      $("div.toolbar").css('float','left');
      $(".buttons-excel").css("display","none");
-
-//     $("#pl-all tbody").on('click', 'tr td:not(:first-child)', function() {
-//         var data = table.row(this).data();
-//         var encryptedRec = CryptoJS.AES.encrypt(data.recipient_id, "My Secret Passphrase");
-//         var encryptedAES = CryptoJS.AES.encrypt(data.client_id, "My Secret Passphrase");
-//         window.location.replace('client-edit.php?client='+encryptedAES+'&recipient='+encryptedRec);
-//    })
-
-   
 }

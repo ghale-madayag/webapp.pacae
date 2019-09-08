@@ -44,6 +44,22 @@
         $sql->execute(array($memId));
 
         echo 1;
+    }elseif(isset($_POST['appID'])){
+        $memId = $_POST['appID'];
+
+        $sqlCheck = $handler->prepare("SELECT mem_status FROM member WHERE mem_id=?");
+        $sqlCheck->execute(array($memId));
+
+        $row = $sqlCheck->fetch(PDO::FETCH_OBJ);
+
+        if($row->mem_status == 1){
+            echo 0;
+        }else{
+            $sql = $handler->prepare("UPDATE member SET mem_status=1 WHERE mem_id=?");
+            $sql->execute(array($memId));
+            echo 1;
+        }
+
     }elseif(isset($_POST['email'])){
         $fullname = $_POST['fname'];
         $email = $_POST['email'];
@@ -153,7 +169,8 @@
         while ($row = $sql->fetch(PDO::FETCH_OBJ)) {
             $fullname = ucfirst($row->mem_fname)." ".ucfirst($row->mem_lname);
             $status = $row->mem_status;
-
+            $dateCre = date_create($row->mem_indate);
+            $date = date_format($dateCre, 'M. d, Y | h:i a');
             if($status==0){
                 $status='<span class="label label-warning">Pending</span>';
             }else{
@@ -169,7 +186,7 @@
                 'position' => $row->mem_position,
                 'school' => $row->mem_school,
                 'schooladd' => $row->mem_schooladd,
-                'indate' => $row->mem_indate
+                'indate' => $date
 
             );
         }

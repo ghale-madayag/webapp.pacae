@@ -168,7 +168,7 @@
         
         <div id="thankyou" class="text-center">
             <h1 class="display-4">Thank You!</h1>
-            <p class="lead"><strong>Please check your email</strong> for further instructions on how to complete your account setup.</p>
+            <p class="lead"><strong>We will send you a confirmation message once your already approved by the administrator</strong></p>
             <hr>
             <p>
                 <!-- Having trouble? <a href="#" class="text-success" id="contactUrl">Contact us</a> -->
@@ -177,8 +177,20 @@
                 <a class="btn btn-primary btn-sm btn-success" href="#" id="loginBtn" role="button">Back to Login</a>
             </p>
         </div>
+        <div id="error" class="text-center">
+            <h1 class="display-4">Error</h1>
+            <p class="lead"><strong>Email address of Contact is already exist</strong></p>
+            <hr>
+            <p>
+                <!-- Having trouble? <a href="#" class="text-success" id="contactUrl">Contact us</a> -->
+            </p>
+            <p class="lead">
+                <a class="btn btn-primary btn-sm btn-success" href="register.html" role="button">Back to Register</a>
+            </p>
+        </div>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
         <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
         <script src="js/register.js"></script>
     </body>

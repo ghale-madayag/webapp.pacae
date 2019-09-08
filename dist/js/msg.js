@@ -1,8 +1,9 @@
 $(document).ready(function(){
+    loadSent();
     $(document).on('click', '.select-all', function (e) {
         getAllContact();
+       
     });
-
 
     $(document).on("keyup", ".select2-search__field", function (e) {
         var eventObj = window.event ? event : e;
@@ -33,6 +34,7 @@ $(document).ready(function(){
                         $("input[type=text],textarea").val("");
                         $('#contact').html('');
                         getContact();
+                        loadSent();
                     }else{
                         toastErr("Error!", "Message not sent");
                     }

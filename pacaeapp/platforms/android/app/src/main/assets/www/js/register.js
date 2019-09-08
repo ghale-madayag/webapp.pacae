@@ -1,5 +1,6 @@
 $(document).ready(function() {
     showTab(currentTab);
+    $('#mobile').mask('(63) 999-999-9999');
 
     $("#loginBtn").on('click', function(e){
         window.location.assign('index.html');
@@ -140,6 +141,8 @@ function submitForm(){
                 $(".form-signin").css("display", "none");
                 $("#thankyou").css("display", "block");
             }else{
+              $(".form-signin").css("display", "none");
+              $("#error").css("display", "block");
                 //toastSuccess("Successfully Updated", "Patient information successfully updated")
             }
         }

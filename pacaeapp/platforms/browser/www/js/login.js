@@ -13,11 +13,13 @@ $(document).ready(function() {
         contentType:false,
         beforeSend: function(){
           //$("#loader").css("display", "block");
-          loaderVisible("loader");
+          
+          loaderVisible("loaderBtn");
+
         },
         success: function(data) {
           //$("#loader").css("display", "none");
-          loaderHide("loaderBtn","Signin");
+          loaderHide("loaderBtn","Sign in");
             var json = $.parseJSON(data);
 
             if(data!=0){
