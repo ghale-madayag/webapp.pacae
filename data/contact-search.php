@@ -3,11 +3,11 @@
     
     if(isset($_GET['q'])) {
 		$term = $_GET['q'];
-		$sql = $handler->prepare('SELECT mem_id, mem_contact, CONCAT(mem_fname," ", mem_lname) as fullname FROM member WHERE mem_contact LIKE "%'.$term.'%" OR mem_fname LIKE "%'.$term.'%" OR mem_lname LIKE "%'.$term.'%"');
+		$sql = $handler->prepare('SELECT mem_id, mem_contact, CONCAT(mem_fname," ", mem_lname) as fullname FROM member WHERE mem_contact LIKE "%'.$term.'%" OR mem_fname LIKE "%'.$term.'%" OR mem_lname LIKE "%'.$term.'%" AND mem_status !=0');
         $sql->execute();
     
 	}else{
-		$sql = $handler->query('SELECT mem_id, mem_contact, CONCAT(mem_fname," ", mem_lname) as fullname FROM member ORDER BY mem_id DESC');
+		$sql = $handler->query('SELECT mem_id, mem_contact, CONCAT(mem_fname," ", mem_lname) as fullname FROM member WHERE mem_status !=0 ORDER BY mem_id DESC');
 	}
 
 
