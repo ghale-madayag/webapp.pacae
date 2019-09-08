@@ -113,38 +113,26 @@
                 'schooladd' => isset($_POST['schooladd']) ? $_POST['schooladd'] : null
             ));
     
-            // $headers  = 'MIME-Version: 1.0' . "\r\n";
-            // $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+            $headers  = 'MIME-Version: 1.0' . "\r\n";
+            $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
     
-            // $message = '<html><body>';
-            // $message .= '<h1>ACCOUNT VERIFICATION REMINDER</h1>';
-            // $message .= '<p>Dear '.$fullname.'</p>';
-            // $message .= '<p>Your email address has been registered to access the PACAE APP. Use the following information to sign in.</p> ';
-            // $message .= '<p>Email: '.$email.'</p>';
-            // $message .= '<p>Password: <strong>'.$pword.'</strong></p>';
-            // $message .= '<br/>';
-            // $message .= '<br/>';
-            // $message .= '<p>To verify your account, click the button below.</p>';
-            // $message .= '<a href="#'.sha1($pword).'" style="background-color: #0b7542;border: 12px solid #0b7542;
-            //             border-left: 24px solid #0b7542;
-            //             border-right: 24px solid #0b7542;
-            //             color: #fff;
-            //             display: inline-block;
-            //             font-family: Arial,Helvetica,sans-serif;
-            //             font-size: 14px;
-            //             line-height: 1.3em;
-            //             text-align: center;
-            //             text-decoration: none;
-            //             text-transform: uppercase;">VERIFY ACCOUNT</a>';
-            // $message .= '</body></html>';
+            $message = '<html><body>';
+            $message .= '<h1>ACCOUNT VERIFICATION REMINDER</h1>';
+            $message .= '<p>Dear '.$fullname.'</p>';
+            $message .= '<p>Your email address has been registered to access the PACAE APP. Use the following information to sign in.</p> ';
+            $message .= '<p>Email: '.$email.'</p>';
+            $message .= '<p>Password: <strong>'.$pword.'</strong></p>';
+            $message .= '<br/>';
+            $message .= '<br/>';
+            $message .= '</body></html>';
     
-            // if(mail($to, $subject, $message, $headers)){
-            //     echo 1;
-            // } else{
-            //    echo 0;
-            // }
+            if(mail($to, $subject, $message, $headers)){
+                echo 1;
+            } else{
+               echo 0;
+            }
 
-            echo 1;
+        
         }
     }elseif(isset($_POST['get_mem'])){
         $sql = $handler->prepare('SELECT * FROM member WHERE mem_id=? ORDER BY mem_id DESC');

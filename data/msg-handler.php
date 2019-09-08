@@ -34,16 +34,15 @@
             $contact = str_replace("-","",$row->mem_contact);
             $contact = str_replace("(63) ","63",$contact);
             
-            // $results=itexmo($contact,$txt,'TR-ABEGA370289_6W9D7');
+            $results=itexmo($contact,$txt,'TR-ABEGA370289_6W9D7');
 
-            // if ($results == ""){
-            //     $status = 0;
-            // }else if ($results == 0){
-            //     $status = 1;
-            // }else{	
-            //     $status = 0;
-            // }
-            $status=1;
+            if ($results == ""){
+                $status = 0;
+            }else if ($results == 0){
+                $status = 1;
+            }else{	
+                $status = 0;
+            }
             
             $sql = $handler->prepare('INSERT INTO message_sent(`msg_id`,`mem_id`,`ms_status`) VALUES(?,?,'.$status.')');
             $sql->execute(array($lastInsert, $key));

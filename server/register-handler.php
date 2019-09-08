@@ -2,7 +2,9 @@
     require_once('handler.php');
 
     if(isset($_POST['fname'])){
-
+        $email = $_POST['email'];
+        $contact = $_POST['mobile'];
+        
         $sqlCheck = $handler->prepare("SELECT mem_email, mem_contact FROM member WHERE mem_email= ? OR mem_contact= ?");
         $sqlCheck->execute(array($email,$contact));
         
