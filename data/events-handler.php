@@ -114,7 +114,7 @@
             $dateCre = date_create($row->eve_indate);
             $date = date_format($dateCre, 'M. d, Y | h:i a');
 
-            if($attendees>1){
+            if($attendees>0){
                 $attendees='<span class="label label-success">'.$attendees.'</span>';
             }else{
                 $attendees = '<span class="label label-danger">'.$attendees.'</span>';
