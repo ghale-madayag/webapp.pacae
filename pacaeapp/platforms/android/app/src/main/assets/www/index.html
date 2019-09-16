@@ -82,47 +82,31 @@
   <script type="text/javascript" src="js/index.js"></script>
   <script type="text/javascript" src="cordova.js"></script>
   <script type="text/javascript">
-    navigator.camera.getPicture(uploadPhoto, function(message) {
-        alert('get picture failed');
-        }, {
-        quality: 100,
-        destinationType: navigator.camera.DestinationType.FILE_URI,
-        sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
-    });
 
-    document.addEventListener("deviceready", onDeviceReady, false);
-    function onDeviceReady() {
-        console.log(navigator.camera);
-        console.log('hi')
-    }
-
-    navigator.camera.cleanup(onSuccess, onFail);
-
-    function onSuccess() {
-        console.log("Camera cleanup success.")
-    }
-
-    function onFail(message) {
-        alert('Failed because: ' + message);
-    }
     var camearaOptions = {
         quality: 100,
         destinationType: navigator.camera.DestinationType.FILE_URI,
         sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
     }
+
     function getImage(id) {
-        navigator.camera.getPicture(uploadPhoto,onError, camearaOptions);
+        navigator.camera.getPicture(function(imageData) {
+          uploadPhoto(imageData, id);},onError, camearaOptions);
     }
 
     function onError(err){ alert(error); }
 
-    function uploadPhoto(imageURI) {
+    function uploadPhoto(imageURI,id) {
+        var params = {};
+        params.value1 = id;
         var options = new FileUploadOptions();
         options.fileKey = "file";
         options.fileName = imageURI.substr(imageURI.lastIndexOf('/') + 1);
         options.mimeType = "image/jpeg";
+        options.params = params;
         var ft = new FileTransfer();
-        ft.upload(imageURI, "http://192.168.1.4/phonegap/upload/upload.php",
+        // ft.upload(imageURI, "https://pacae.org/webapp.pacae/server/upload-handler.php",
+        ft.upload(imageURI, "http://10.0.2.2/webapp.pacae/server/upload-handler.php",
         function (result) {
             console.log(JSON.stringify(result));
         },

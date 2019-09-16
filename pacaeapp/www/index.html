@@ -88,19 +88,25 @@
         destinationType: navigator.camera.DestinationType.FILE_URI,
         sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
     }
+
     function getImage(id) {
-        navigator.camera.getPicture(uploadPhoto,onError, camearaOptions);
+        navigator.camera.getPicture(function(imageData) {
+          uploadPhoto(imageData, id);},onError, camearaOptions);
     }
 
     function onError(err){ alert(error); }
 
-    function uploadPhoto(imageURI) {
+    function uploadPhoto(imageURI,id) {
+        var params = {};
+        params.value1 = id;
         var options = new FileUploadOptions();
         options.fileKey = "file";
         options.fileName = imageURI.substr(imageURI.lastIndexOf('/') + 1);
         options.mimeType = "image/jpeg";
+        options.params = params;
         var ft = new FileTransfer();
-        ft.upload(imageURI, "https://pacae.org/webapp.pacae/server/upload-hander.php",
+        ft.upload(imageURI, "https://pacae.org/webapp.pacae/server/upload-handler.php",
+        //ft.upload(imageURI, "http://10.0.2.2/webapp.pacae/server/upload-handler.php",
         function (result) {
             console.log(JSON.stringify(result));
         },

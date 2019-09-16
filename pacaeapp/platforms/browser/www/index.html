@@ -80,54 +80,38 @@
   <script type="text/javascript" src="js/dashboard.js"></script>
   <script type="text/javascript" src="js/custom.js"></script>
   <script type="text/javascript" src="js/index.js"></script>
+  <script type="text/javascript" src="cordova.js"></script>
   <script type="text/javascript">
-    navigator.camera.getPicture(uploadPhoto, function(message) {
-        alert('get picture failed');
-        }, {
+
+    var camearaOptions = {
         quality: 100,
         destinationType: navigator.camera.DestinationType.FILE_URI,
         sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
-    });
-    
-    document.addEventListener("deviceready", onDeviceReady, false);
-    function onDeviceReady() {
-        console.log(navigator.camera);
     }
 
-    navigator.camera.cleanup(onSuccess, onFail);
-
-    function onSuccess() {
-        console.log("Camera cleanup success.")
+    function getImage(id) {
+        navigator.camera.getPicture(function(imageData) {
+          uploadPhoto(imageData, id);},onError, camearaOptions);
     }
 
-    function onFail(message) {
-        alert('Failed because: ' + message);
+    function onError(err){ alert(error); }
+
+    function uploadPhoto(imageURI,id) {
+        console.log(id)
+        var options = new FileUploadOptions();
+        options.fileKey = "file";
+        options.fileName = imageURI.substr(imageURI.lastIndexOf('/') + 1);
+        options.mimeType = "image/jpeg";
+        var ft = new FileTransfer();
+        // ft.upload(imageURI, "https://pacae.org/webapp.pacae/server/upload-handler.php",
+        ft.upload(imageURI, "http://192.168.0.13/webapp.pacae/server/upload-handler.php",
+        function (result) {
+            console.log(JSON.stringify(result));
+        },
+        function (error) {
+            console.log(JSON.stringify(error));
+        }, options);
     }
-    // var camearaOptions = {
-    //     quality: 100,
-    //     destinationType: navigator.camera.DestinationType.FILE_URI,
-    //     sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
-    // }
-    // function getImage(id) {
-    //     navigator.camera.getPicture(uploadPhoto,onError, camearaOptions);
-    // }
-
-    // function onError(err){ alert(error); }
-
-    // function uploadPhoto(imageURI) {
-    //     var options = new FileUploadOptions();
-    //     options.fileKey = "file";
-    //     options.fileName = imageURI.substr(imageURI.lastIndexOf('/') + 1);
-    //     options.mimeType = "image/jpeg";
-    //     var ft = new FileTransfer();
-    //     ft.upload(imageURI, "http://192.168.1.4/phonegap/upload/upload.php",
-    //     function (result) {
-    //         console.log(JSON.stringify(result));
-    //     },
-    //     function (error) {
-    //         console.log(JSON.stringify(error));
-    //     }, options);
-    // }
   </script>
   </body>
 </html>
