@@ -60,13 +60,15 @@ function getAllEvent(){
                 var json = $.parseJSON(data);
                 var event = $("#eventContainer").empty();
                 $(json).each(function(i, val){
-                    var btnRes, btnTxt;
+                    var btnRes, btnTxt, conF;
                     if(val.attend==1){
                         btnRes = 'secondary';
                         btnTxt = 'Cancel Reservation';
+                        conF = 'display:block;';
                     }else{
                         btnRes = 'success';
                         btnTxt = 'Attend';
+                        conF = 'display:none;';
                     }
                     event.append('<div class="card my-4">'+
                     '<img src="https://pacae.org/webapp.pacae/img/'+val.img+'" class="card-img-top" alt="...">'+
@@ -80,6 +82,7 @@ function getAllEvent(){
                         '<li class="list-group-item"><i class="fas fa-users"></i> <span class="ml-2">'+val.count+' Attendees</span></li>'+
                         '</ul>'+
                         '<div class="card-body">'+
+                        '<button type="file" class="btn btn-block btn-warning" style="'+conF+'" id="conF_'+val.id+'" onclick="getImage('+val.id+');">Upload your receipt</button>'+
                         '<button class="btn btn-block btn-'+btnRes+'" id="btn_'+val.id+'" onclick="getevent('+val.id+');">'+btnTxt+'</button>'+
                         '</div>'+
                         '</div>');
@@ -97,3 +100,4 @@ function getevent(val){
     $("#userId").val(userId);
     $('.eventModal').modal('show');
 }
+

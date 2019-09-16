@@ -80,5 +80,34 @@
   <script type="text/javascript" src="js/dashboard.js"></script>
   <script type="text/javascript" src="js/custom.js"></script>
   <script type="text/javascript" src="js/index.js"></script>
+  <script type="text/javascript" src="cordova.js"></script>
+  <script type="text/javascript">
+
+    var camearaOptions = {
+        quality: 100,
+        destinationType: navigator.camera.DestinationType.FILE_URI,
+        sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
+    }
+    function getImage(id) {
+        navigator.camera.getPicture(uploadPhoto,onError, camearaOptions);
+    }
+
+    function onError(err){ alert(error); }
+
+    function uploadPhoto(imageURI) {
+        var options = new FileUploadOptions();
+        options.fileKey = "file";
+        options.fileName = imageURI.substr(imageURI.lastIndexOf('/') + 1);
+        options.mimeType = "image/jpeg";
+        var ft = new FileTransfer();
+        ft.upload(imageURI, "https://pacae.org/webapp.pacae/server/upload-hander.php",
+        function (result) {
+            console.log(JSON.stringify(result));
+        },
+        function (error) {
+            console.log(JSON.stringify(error));
+        }, options);
+    }
+  </script>
   </body>
 </html>
