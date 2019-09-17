@@ -37,9 +37,18 @@
         $sql = $handler->prepare('UPDATE participants SET par_status=2 WHERE par_id=?');
         $sql->execute(array($_POST['approved']));
 
-        itexmo($contact,$txt,'TR-ABEGA370289_6W9D7');
+        //itexmo($contact,$txt,'TR-ABEGA370289_6W9D7');
+        $results=itexmo($contact,$txt,'TR-ABEGA370289_6W9D7');
 
-        echo 1;
+        if ($results == ""){
+            $status = 0;
+        }else if ($results == 0){
+            $status = 1;
+        }else{	
+            $status = 0;
+        }
+
+        echo $status;
     }else if(isset($_POST['getAtt'])){
         $sql = $handler->prepare('SELECT member.mem_id, member.mem_contact, CONCAT(member.mem_fname," ", member.mem_lname) as fullname,participants.par_id, participants.eve_id,participants.par_indate, participants.par_img, participants.par_status FROM member RIGHT JOIN participants ON member.mem_id = participants.mem_id 
         WHERE participants.eve_id = ? AND participants.par_status=1 ORDER BY participants.mem_id DESC');
