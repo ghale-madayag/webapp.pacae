@@ -1,6 +1,66 @@
 <?php
     require_once('handler.php');
-    if(isset($_POST['eventId'])){
+    if(isset($_POST['decline'])){
+        $sql = $handler->prepare('UPDATE participants SET par_status=0 WHERE par_id=?');
+        $sql->execute(array($_POST['decline']));
+
+        echo 1;
+    }else if(isset($_POST['approved'])){
+        $sql = $handler->prepare('UPDATE participants SET par_status=2 WHERE par_id=?');
+        $sql->execute(array($_POST['approved']));
+
+        echo 1;
+    }else if(isset($_POST['getAtt'])){
+        $sql = $handler->prepare('SELECT member.mem_id, member.mem_contact, CONCAT(member.mem_fname," ", member.mem_lname) as fullname,participants.par_id, participants.eve_id,participants.par_indate, participants.par_img, participants.par_status FROM member RIGHT JOIN participants ON member.mem_id = participants.mem_id 
+        WHERE participants.eve_id = ? AND participants.par_status=1 ORDER BY participants.mem_id DESC');
+
+        $sql->execute(array($_POST['getAtt']));
+
+        while ($row = $sql->fetch(PDO::FETCH_OBJ)) {
+
+            $dateCre = date_create($row->par_indate);
+            $date = date_format($dateCre, 'M. d, Y | h:i a');
+
+            $img = '<a href="img/'.$row->par_img.'" data-lightbox="'.$row->par_img.'" data-title="'.$row->par_img.'"><i class="fa fa-image"> <strong>View Image</strong></i></a>';
+            
+            $result[] = array(
+                'id' => $row->par_id,
+                'img' => $img,
+                'fullname' => $row->fullname,
+                'date' => $date,
+            );
+        }
+
+        echo json_encode($result);
+    }else if(isset($_POST['getConf'])){
+        $sql = $handler->prepare('SELECT member.mem_id, member.mem_contact,member.mem_email,member.mem_school,member.mem_schooladd,member.mem_position, CONCAT(member.mem_fname," ", member.mem_lname) as fullname,participants.par_id, participants.eve_id,participants.par_indate, participants.par_img, participants.par_status FROM member RIGHT JOIN participants ON member.mem_id = participants.mem_id 
+        WHERE participants.eve_id = ? AND participants.par_status=2 ORDER BY participants.mem_id DESC');
+
+        $sql->execute(array($_POST['getConf']));
+
+        while ($row = $sql->fetch(PDO::FETCH_OBJ)) {
+
+            $dateCre = date_create($row->par_indate);
+            $date = date_format($dateCre, 'M. d, Y | h:i a');
+
+            $img = '<a href="img/'.$row->par_img.'" data-lightbox="'.$row->par_img.'" data-title="'.$row->par_img.'"><i class="fa fa-image"> <strong>View Image</strong></i></a>';
+            
+            $result[] = array(
+                'id' => $row->par_id,
+                'img' => $img,
+                'fullname' => $row->fullname,
+                'contact' => $row->mem_contact,
+                'email' => $row->mem_email,
+                'designation' => $row->mem_position,
+                'school' => $row->mem_school,
+                'schoolAdd' => $row->mem_schooladd,
+                'date' => $date,
+            );
+        }
+
+        echo json_encode($result);
+
+    }elseif(isset($_POST['eventId'])){
         $img = basename($_FILES["imgEdit"]["name"]);
 
         if($img==null){
@@ -107,17 +167,30 @@
         
         while ($row = $sql->fetch(PDO::FETCH_OBJ)) {
 
-            $att = $handler->prepare("SELECT COUNT(par_id) AS cnt FROM participants WHERE eve_id=?");
-            $att->execute(array($row->eve_id));
+            $att = $handler->prepare("SELECT COUNT(par_id) AS cnt FROM participants WHERE eve_id=? AND par_status=?");
+            $att->execute(array($row->eve_id,1));
             $cntRos = $att->fetch(PDO::FETCH_OBJ);
             $attendees = $cntRos->cnt;
+
+            $conF = $handler->prepare("SELECT COUNT(par_id) AS cnt FROM participants WHERE eve_id=? AND par_status=?");
+            $conF->execute(array($row->eve_id,2));
+            $conConF = $conF->fetch(PDO::FETCH_OBJ);
+            $confirmed = $conConF->cnt;
             $dateCre = date_create($row->eve_indate);
             $date = date_format($dateCre, 'M. d, Y | h:i a');
 
+            $title = "'".$row->eve_title."'";
+
             if($attendees>0){
-                $attendees='<span class="label label-success">'.$attendees.'</span>';
+                $attendees='<a class="eveLink" onclick="getAtt('.$row->eve_id.', '.$title.');"><span class="label label-success">'.$attendees.'</span></a>';
             }else{
                 $attendees = '<span class="label label-danger">'.$attendees.'</span>';
+            }
+
+            if($confirmed>0){
+                $confirmed='<a class="eveLink" onclick="getConf('.$row->eve_id.', '.$title.');"><span class="label label-success">'.$confirmed.'</span></a>';
+            }else{
+                $confirmed = '<span class="label label-danger">'.$confirmed.'</span>';
             }
             $result[] = array(
                 'id' => $row->eve_id,
@@ -126,7 +199,8 @@
                 'date' => $row->eve_date,
                 'location' => $row->eve_location,
                 'indate' => $date,
-                'count' => $attendees
+                'attendees' => $attendees,
+                'confirmed' => $confirmed
             );
         }
 

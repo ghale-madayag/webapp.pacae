@@ -73,7 +73,8 @@ function getMyEvent(){
                         '<li class="list-group-item"><i class="fas fa-users"></i> <span class="ml-2">'+val.count+' Attendees</span></li>'+
                         '</ul>'+
                         '<div class="card-body">'+
-                        '<button class="btn btn-block btn-'+btnRes+'" id="btn_'+val.id+'" onclick="getevent('+val.id+');">'+btnTxt+'</button>'+
+                        '<button class="btn btn-block btn-info"><i class="fa fa-check"></i> Confirmed</button>'+
+                        //'<button class="btn btn-block btn-'+btnRes+'" id="btn_'+val.id+'" onclick="getevent('+val.id+');">'+btnTxt+'</button>'+
                         '</div>'+
                         '</div>');
                 })

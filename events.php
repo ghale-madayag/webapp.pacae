@@ -5,6 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Events | PACAE</title>
   <?php include_once('inc/header.php')?>
+  <link href="dist/css/lightbox.css" rel="stylesheet" />
 </head>
 <body class="hold-transition sidebar-mini skin-green-light">
 <div class="wrapper">
@@ -31,6 +32,7 @@
                             <tr>
                                 <th width="5"><div style="display: none;"><input type="checkbox" id="select-all"><label for="select-all"></label></div></th>
                                 <th>Attendees</th>
+                                <th>Confirmed</th>
                                 <th width="200">Events Title</th>
                                 <th width="400">Events Description</th>
                                 <th>Event Date</th>
@@ -145,6 +147,60 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
+
+    <div class="modal fade" id="getAttendees" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="titAtt">Attendees</h4>
+                </div>
+                <div class="modal-body">
+                <form id="form-events-all" class="form-horizontal" enctype="multipart/form-data" method="post">
+                    <table id="events-all" class="table table-striped events-all" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th width="5"><div style="display: none;"><input type="checkbox" id="select-all"><label for="select-all"></label></div></th>
+                                <th>Deposit Slip</th>
+                                <th>Name</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </form>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <div class="modal fade" id="getConfirmed" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="titConf">Confirmed</h4>
+                </div>
+                <div class="modal-body">
+                <form id="form-eventsCon-all" class="form-horizontal" enctype="multipart/form-data" method="post">
+                    <table id="eventsCon-all" class="table table-striped eventsCon-all" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th>Deposit Slip</th>
+                                <th>Name</th>
+                                <th>Contact</th>
+                                <th>Email</th>
+                                <th>Designation</th>
+                                <th>School</th>
+                                <th>School Address</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </form>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
   </div>
   <?php include_once('inc/footer.php'); ?>
   <div class="control-sidebar-bg"></div>
@@ -154,6 +210,7 @@
 <script src="plugins/iCheck/icheck.min.js"></script>
 <script src="plugins/input-mask/jquery.inputmask.js"></script>
 <script src="dist/js/jquery-toast-plugin-master/dist/jquery.toast.min.js"></script>
+<script src="dist/js/lightbox.js"></script>
 <script src="dist/js/toast.js"></script>
 <script src="dist/js/events.js"></script>
 <script>
