@@ -18,6 +18,7 @@
             while($rowPar = $parSql->fetch(PDO::FETCH_OBJ)) {
                 $parEve = $rowPar->eve_id;
                 $eve = $row->eve_id;
+                $status = $rowPar->par_status;
 
                 if($parEve==$eve){
                     $attend = 1;  
@@ -32,7 +33,7 @@
                 'location' => $row->eve_location,
                 'img' => $row->eve_img,
                 'attend' => $attend,
-                'status' => $row->par_status,
+                'status' => $status,
                 'count' => $cntRos->cnt
             );
         }
