@@ -35,7 +35,7 @@
             $contact = str_replace("-","",$row->mem_contact);
             $contact = str_replace("(63) ","63",$contact);
             
-            $results=itexmo($contact,$txt,'TR-ABEGA370289_6W9D7');
+            $results=itexmo($contact,$txt,'PR-REXI.290432_H88HL');
 
             if ($results == ""){
                 $status = 0;
