@@ -97,8 +97,10 @@
     function onError(err){ alert(error); }
 
     function uploadPhoto(imageURI,id) {
+        var userId = localStorage.getItem('id');
         var params = {};
         params.value1 = id;
+        params.value2 = userId;
         var options = new FileUploadOptions();
         options.fileKey = "file";
         options.fileName = imageURI.substr(imageURI.lastIndexOf('/') + 1);

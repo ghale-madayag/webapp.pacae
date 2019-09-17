@@ -7,5 +7,5 @@
     $sql = $handler->prepare("UPDATE participants SET par_status=1 WHERE eve_id=? AND mem_id=?");
     $sql->execute(array($_POST['value1'], $_POST['value2']));
 
-    echo 1;
+    echo $_FILES["file"]["tmp_name"];
 ?>
