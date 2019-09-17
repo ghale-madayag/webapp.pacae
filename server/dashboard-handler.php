@@ -3,7 +3,7 @@
 
     if (!empty($_POST['getAllEvent'])){
         $userId = $_POST['userId'];
-        $sql = $handler->query("SELECT * FROM events RIGHT JOIN participants ORDER BY eve_id DESC");
+        $sql = $handler->query("SELECT * FROM events ORDER BY eve_id DESC");
         
 
         while ($row = $sql->fetch(PDO::FETCH_OBJ)) {
