@@ -37,7 +37,7 @@
         $sql = $handler->prepare('UPDATE participants SET par_status=2 WHERE par_id=?');
         $sql->execute(array($_POST['approved']));
 
-        itexmo($contact,$txt,'PR-REXI.290432_H88HL');
+        itexmo($contact,$txt,'TR-ABEGA370289_6W9D7');
 
         echo 1;
     }else if(isset($_POST['getAtt'])){
