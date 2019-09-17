@@ -82,7 +82,7 @@ function getAllEvent(){
                         '<li class="list-group-item"><i class="fas fa-users"></i> <span class="ml-2">'+val.count+' Attendees</span></li>'+
                         '</ul>'+
                         '<div class="card-body">'+
-                        '<button type="file" class="btn btn-block btn-warning" style="'+conF+'" id="conF_'+val.id+'" onclick="getImage('+val.id+');">Upload your receipt</button>'+
+                        '<button type="file" class="btn btn-block btn-warning imgUpload" style="'+conF+'" id="conF_'+val.id+'" onclick="getImage('+val.id+');">Take a photo of Bank Deposit</button>'+
                         '<button class="btn btn-block btn-'+btnRes+'" id="btn_'+val.id+'" onclick="getevent('+val.id+');">'+btnTxt+'</button>'+
                         '</div>'+
                         '</div>');

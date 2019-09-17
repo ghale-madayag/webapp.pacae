@@ -105,10 +105,18 @@
         options.mimeType = "image/jpeg";
         options.params = params;
         var ft = new FileTransfer();
-        // ft.upload(imageURI, "https://pacae.org/webapp.pacae/server/upload-handler.php",
-        ft.upload(imageURI, "http://10.0.2.2/webapp.pacae/server/upload-handler.php",
+        ft.onprogress = function(e){
+          if(e.lengthComputable){
+            loaderVisible("conF_"+id);
+          }
+        }
+        ft.upload(imageURI, "https://pacae.org/webapp.pacae/server/upload-handler.php",
+        //ft.upload(imageURI, "http://10.0.2.2/webapp.pacae/server/upload-handler.php",
         function (result) {
             console.log(JSON.stringify(result));
+            console.log(result.response )
+            loaderHide("conF_"+id,"We will send you confirmation");
+            $("#conF_"+id).prop('onclick',null).off("click");
         },
         function (error) {
             console.log(JSON.stringify(error));
