@@ -9,11 +9,11 @@
         while ($row = $sql->fetch(PDO::FETCH_OBJ)) {
             $attend = 0;
             $statu = 0;
-            $parSql = $handler->prepare("SELECT * FROM participants WHERE mem_id=? AND par_status!=?");
-            $parSql->execute(array($userId,2));
+            $parSql = $handler->prepare("SELECT * FROM participants WHERE mem_id=? AND par_status!=2");
+            $parSql->execute(array($userId));
 
-            $att = $handler->prepare("SELECT COUNT(par_id) AS cnt FROM participants WHERE eve_id=? AND par_status!=?");
-            $att->execute(array($row->eve_id,2));
+            $att = $handler->prepare("SELECT COUNT(par_id) AS cnt FROM participants WHERE eve_id=?");
+            $att->execute(array($row->eve_id));
             $cntRos = $att->fetch(PDO::FETCH_OBJ);
 
             while($rowPar = $parSql->fetch(PDO::FETCH_OBJ)) {
