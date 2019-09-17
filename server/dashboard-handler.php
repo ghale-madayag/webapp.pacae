@@ -12,7 +12,7 @@
             $parSql = $handler->prepare("SELECT * FROM participants WHERE mem_id=? AND par_status!=2");
             $parSql->execute(array($userId));
 
-            $att = $handler->prepare("SELECT COUNT(par_id) AS cnt FROM participants WHERE eve_id=?");
+            $att = $handler->prepare("SELECT COUNT(par_id) AS cnt FROM participants WHERE eve_id=? AND par_status!=2");
             $att->execute(array($row->eve_id));
             $cntRos = $att->fetch(PDO::FETCH_OBJ);
 
