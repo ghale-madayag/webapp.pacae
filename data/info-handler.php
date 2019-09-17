@@ -22,7 +22,8 @@
 	}
 	
 	function itexmoStatus(){
-		$url = 'https://itexmo.com/php_api/serverstatus.php?apicode=TR-ABEGA370289_6W9D7';
+		//$url = 'https://itexmo.com/php_api/serverstatus.php?apicode=TR-ABEGA370289_6W9D7';
+		$url = 'https://itexmo.com/php_api/serverstatus.php?apicode=PR-REXI.290432_H88HL';
 		return file_get_contents($url);
 	}
 
