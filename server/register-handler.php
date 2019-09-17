@@ -62,7 +62,7 @@
             $message = '<html><body>';
             $message .= '<h1>ACCOUNT VERIFICATION REMINDER</h1>';
             $message .= '<p>Dear '.$fullname.'</p>';
-            $message .= '<p>Thank You!<br/>Your registration to PACAE App has been approved. You are now advised to Log-in using your encoded username and password.
+            $message .= '<p>Thank You!<br/><br/>Your registration to PACAE App has been approved. You are now advised to Log-in using your encoded username and password.
             </p> ';
             $message .= '<p>Email: '.$email.'</p>';
             $message .= '<p>Password: <strong>'.$pword.'</strong></p>';

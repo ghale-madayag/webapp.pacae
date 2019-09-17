@@ -31,7 +31,7 @@
         $contact = str_replace("-","",$row->mem_contact);
         $contact = str_replace("(63) ","63",$contact);
 
-        $txt = 'Congratulations:'.$title.' has been confirmed';
+        $txt = 'Thank You! Your registration for the '.$title.' has been received and confirmed. Please bring the hard copy of your deposit slip/Transaction Receipt on the first day of the seminar. ';
         
 
         $sql = $handler->prepare('UPDATE participants SET par_status=2 WHERE par_id=?');
