@@ -8,20 +8,21 @@
 
         while ($row = $sql->fetch(PDO::FETCH_OBJ)) {
             $attend = 0;
+            $statu = 0;
             $parSql = $handler->prepare("SELECT * FROM participants WHERE mem_id=?");
             $parSql->execute(array($userId));
 
-            $att = $handler->prepare("SELECT COUNT(par_id),eve_id,par_status AS cnt FROM participants WHERE eve_id=?");
+            $att = $handler->prepare("SELECT COUNT(par_id) AS cnt FROM participants WHERE eve_id=?");
             $att->execute(array($row->eve_id));
             $cntRos = $att->fetch(PDO::FETCH_OBJ);
 
             while($rowPar = $parSql->fetch(PDO::FETCH_OBJ)) {
                 $parEve = $rowPar->eve_id;
                 $eve = $row->eve_id;
-                $status = $rowPar->par_status;
-
+                
                 if($parEve==$eve){
                     $attend = 1;  
+                    $status = $rowPar->par_status;
                 }     
             }
 
