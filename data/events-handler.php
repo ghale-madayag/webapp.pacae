@@ -1,13 +1,43 @@
 <?php
     require_once('handler.php');
+    require_once('functions.php');
+
+
     if(isset($_POST['decline'])){
         $sql = $handler->prepare('UPDATE participants SET par_status=0 WHERE par_id=?');
         $sql->execute(array($_POST['decline']));
 
         echo 1;
     }else if(isset($_POST['approved'])){
+
+        $memSql = $handler->prepare("SELECT mem_id FROM participants WHERE par_id =?");
+        $memSql->execute(array($_POST['approved']));
+
+        $eveSql = $handler->prepare("SELECT eve_id FROM participants WHERE par_id =?");
+        $eveSql->execute(array($_POST['approved']));
+
+        $memRow = $memSql->fetch(PDO::FETCH_OBJ);
+        $eveRow = $eveSql->fetch(PDO::FETCH_OBJ);
+
+        $conSql = $handler->prepare("SELECT mem_contact FROM member WHERE mem_id =?");
+        $conSql->execute(array($memRow->mem_id));
+
+        $titSql = $handler->prepare("SELECT eve_title FROM events WHERE eve_id =?");
+        $titSql->execute(array($eveRow->eve_id));
+        $rowTit = $titSql->fetch((PDO::FETCH_OBJ));
+        $title = $rowTit->eve_title;
+
+        $row = $conSql->fetch(PDO::FETCH_OBJ);
+        $contact = str_replace("-","",$row->mem_contact);
+        $contact = str_replace("(63) ","63",$contact);
+
+        $txt = 'Congratulations:'. $title .' has been confirmed';
+        
+
         $sql = $handler->prepare('UPDATE participants SET par_status=2 WHERE par_id=?');
         $sql->execute(array($_POST['approved']));
+
+        itexmo($contact,$txt,'PR-REXI.290432_H88HL');
 
         echo 1;
     }else if(isset($_POST['getAtt'])){
