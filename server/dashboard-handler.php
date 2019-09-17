@@ -32,6 +32,7 @@
                 'location' => $row->eve_location,
                 'img' => $row->eve_img,
                 'attend' => $attend,
+                'status' => $row->par_status,
                 'count' => $cntRos->cnt
             );
         }
