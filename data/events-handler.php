@@ -31,7 +31,7 @@
         $contact = str_replace("-","",$row->mem_contact);
         $contact = str_replace("(63) ","63",$contact);
 
-        $txt = 'Congratulations:'. $title .' has been confirmed';
+        $txt = 'Congratulations:'.$title.' has been confirmed';
         
 
         $sql = $handler->prepare('UPDATE participants SET par_status=2 WHERE par_id=?');
@@ -48,7 +48,7 @@
             $status = 0;
         }
 
-        echo $status;
+        echo $results;
     }else if(isset($_POST['getAtt'])){
         $sql = $handler->prepare('SELECT member.mem_id, member.mem_contact, CONCAT(member.mem_fname," ", member.mem_lname) as fullname,participants.par_id, participants.eve_id,participants.par_indate, participants.par_img, participants.par_status FROM member RIGHT JOIN participants ON member.mem_id = participants.mem_id 
         WHERE participants.eve_id = ? AND participants.par_status=1 ORDER BY participants.mem_id DESC');
