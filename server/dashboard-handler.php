@@ -57,10 +57,13 @@
             $sql = $handler->prepare("INSERT INTO participants(
                 `mem_id`,
                 `eve_id`,
-                `par_indate`) 
+                `par_status`,
+                `par_indate`
+                ) 
                 VALUES(
                     :userId,
                     :eventId,
+                    0,
                     now()
                 )");
 
