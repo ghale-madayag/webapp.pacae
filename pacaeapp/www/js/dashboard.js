@@ -60,16 +60,18 @@ function getAllEvent(){
                 var json = $.parseJSON(data);
                 var event = $("#eventContainer").empty();
                 $(json).each(function(i, val){
-                    var btnRes, btnTxt, conF, btnLbl;
+                    var btnRes, btnTxt, conF, btnLbl, getImg;
                     if(val.attend==1){
                         btnRes = 'secondary';
                         btnTxt = 'Cancel Reservation';
                         conF = 'display:block;';
 
                         if(val.status==1){
-                            btnLbl = 'We will send you confirmation';
+                            btnLbl = 'We will notify you';
+                            getImg = 'javascript:void(0);';
                         }else{
                             btnLbl = 'Take a photo of Bank Deposit';
+                            getImg = 'getImage('+val.id+')';
                         }
                         
                     }else{
@@ -89,7 +91,7 @@ function getAllEvent(){
                         '<li class="list-group-item"><i class="fas fa-users"></i> <span class="ml-2">'+val.count+' Attendees</span></li>'+
                         '</ul>'+
                         '<div class="card-body">'+
-                        '<button type="file" class="btn btn-block btn-warning imgUpload" style="'+conF+'" id="conF_'+val.id+'" onclick="getImage('+val.id+');">'+btnLbl+'</button>'+
+                        '<button type="file" class="btn btn-block btn-warning imgUpload" style="'+conF+'" id="conF_'+val.id+'" onclick="'+getImg+'">'+btnLbl+'</button>'+
                         '<button class="btn btn-block btn-'+btnRes+'" id="btn_'+val.id+'" onclick="getevent('+val.id+');">'+btnTxt+'</button>'+
                         '</div>'+
                         '</div>');

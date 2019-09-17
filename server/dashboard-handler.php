@@ -9,8 +9,8 @@
         while ($row = $sql->fetch(PDO::FETCH_OBJ)) {
             $attend = 0;
             $statu = 0;
-            $parSql = $handler->prepare("SELECT * FROM participants WHERE mem_id=?");
-            $parSql->execute(array($userId));
+            $parSql = $handler->prepare("SELECT * FROM participants WHERE mem_id=? AND par_status!=?");
+            $parSql->execute(array($userId,2));
 
             $att = $handler->prepare("SELECT COUNT(par_id) AS cnt FROM participants WHERE eve_id=?");
             $att->execute(array($row->eve_id));
