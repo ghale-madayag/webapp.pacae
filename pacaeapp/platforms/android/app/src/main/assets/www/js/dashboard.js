@@ -79,9 +79,11 @@ function getAllEvent(){
                         btnTxt = 'Attend';
                         conF = 'display:none;';
                     }
-                    event.append('<div class="card my-4">'+
-                    '<img src="https://pacae.org/webapp.pacae/img/'+val.img+'" class="card-img-top" alt="...">'+
-                    '<div class="card-body">'+
+                    
+                    if(val.status!=2){
+                        event.append('<div class="card my-4">'+
+                        '<img src="https://pacae.org/webapp.pacae/img/'+val.img+'" class="card-img-top" alt="...">'+
+                        '<div class="card-body">'+
                         '<h5 class="card-title">'+val.title+'</h5>'+
                         '<p class="card-text">'+val.desc+'</p>'+
                         '</div>'+
@@ -95,6 +97,7 @@ function getAllEvent(){
                         '<button class="btn btn-block btn-'+btnRes+'" id="btn_'+val.id+'" onclick="getevent('+val.id+');">'+btnTxt+'</button>'+
                         '</div>'+
                         '</div>');
+                    }
                 })
             }else{
                 $("#eventContainer").html('<div class="card my-4"><div class="card-body text-center">No event found</div></div>');

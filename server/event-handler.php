@@ -3,8 +3,9 @@
 
     if (!empty($_POST['getMyEvent'])){
         $userId = $_POST['userId'];
-        $sql = $handler->prepare("SELECT events.eve_id,events.eve_title,events.eve_desc,events.eve_date,events.eve_location,events.eve_img, participants.par_id
-        FROM events INNER JOIN participants ON participants.eve_id = events.eve_id WHERE participants.mem_id = ?;");
+        $sql = $handler->prepare("SELECT events.eve_id,events.eve_title,events.eve_desc,events.eve_date,events.eve_location,events.eve_img, 
+        participants.par_id, participants.par_status
+        FROM events INNER JOIN participants ON participants.eve_id = events.eve_id WHERE participants.mem_id = ? AND participants.par_status=2");
 
         $sql->execute(array($userId));
 
