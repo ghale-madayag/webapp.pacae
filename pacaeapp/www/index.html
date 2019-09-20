@@ -2,7 +2,8 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico"> -->
@@ -16,7 +17,7 @@
     <link href="css/fontawesome-free-5.10.2-web/css/all.css" rel="stylesheet">
   </head>
 
-  <body style="display: none;">
+  <body style="display: none;" onload="onLoad();">
     <nav class="navbar navbar-expand-md navbar-dark bg-success fixed-top">
         <button class="navbar-toggler text-white custom-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -43,7 +44,7 @@
         <div class="text-left">
           <p class="font-weight-normal text-muted">Our Featured Event</p>
         </div>
-        <div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3" id="eventContainer">
+        <div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3 scrollable" id="eventContainer">
           
         </div>
       </div>

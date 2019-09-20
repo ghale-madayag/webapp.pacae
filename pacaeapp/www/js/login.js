@@ -1,7 +1,7 @@
 $(document).ready(function() {
+  
   $("form#login").on('submit', function(e){
     var formData = new FormData($(this)[0]);
-
       $.ajax({
         type: "POST",
         url: "https://pacae.org/webapp.pacae/server/login-handler.php",
@@ -12,9 +12,12 @@ $(document).ready(function() {
         processData: false,
         contentType:false,
         beforeSend: function(){
-          //$("#loader").css("display", "block");
-          
-          loaderVisible("loaderBtn");
+          var chkCon = checkConnectionLoader();
+          if(chkCon=='0'){
+            alert("No network connection");
+          }else{
+            loaderVisible("loaderBtn");
+          }
 
         },
         success: function(data) {

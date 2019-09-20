@@ -1,4 +1,5 @@
 $(document).ready(function(){
+    
     getLocalStorage();
 
     $("form#eventForm").on('submit', function(e){
@@ -18,15 +19,6 @@ $(document).ready(function(){
                 loaderHide("loaderBtn","Yes");
                 $(".eventModal").modal('hide');
                 getAllEvent();
-                // var json = $.parseJSON(data);
-                // $(json).each(function(i,val){
-                //     var btn = $("#btn_"+val.eventId);
-                //     if(val.status==1){
-                //         disableBtn(btn);
-                //     }else{
-                //         enableBtn(btn)
-                //     }
-                // });
 
             }
           })
@@ -70,7 +62,7 @@ function getAllEvent(){
                             btnLbl = 'We will notify you';
                             getImg = 'javascript:void(0);';
                         }else{
-                            btnLbl = 'Take a photo of Bank Deposit';
+                            btnLbl = '<i class="fa fa-camera"></i> Proof of Payment';
                             getImg = 'getImage('+val.id+')';
                         }
                         
@@ -97,6 +89,10 @@ function getAllEvent(){
                         '<button class="btn btn-block btn-'+btnRes+'" id="btn_'+val.id+'" onclick="getevent('+val.id+');">'+btnTxt+'</button>'+
                         '</div>'+
                         '</div>');
+                    }else{
+                        event.html('<div class="card my-4"><div class="card-body">'+
+                        'No event available...'+
+                        '</div></div>');
                     }
                 })
             }else{

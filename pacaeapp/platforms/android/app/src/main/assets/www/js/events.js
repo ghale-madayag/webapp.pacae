@@ -61,6 +61,7 @@ function getMyEvent(){
                         btnRes = 'success';
                         btnTxt = 'Attend';
                     }
+                    
                     event.append('<div class="card my-4">'+
                     '<img src="https://pacae.org/webapp.pacae/img/'+val.img+'" class="card-img-top" alt="...">'+
                     '<div class="card-body">'+

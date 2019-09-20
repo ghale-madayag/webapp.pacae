@@ -26,6 +26,16 @@ function loaderHide(e,val){
     $("#"+e).html('<span>'+val+'</span>');
 }
 
+function loaderVisibleImg(e){
+    $("."+e).empty('');
+    $("."+e).html('<span class="spinner-border spinner-border-sm" role="status" align-middle aria-hidden="false"></span>');
+}
+
+function loaderHideImg(e,val){
+    $("."+e).empty('');
+    $("."+e).html('<span>'+val+'</span>');
+}
+
 function msg(i,val){
    
     var msg = $(".msg").empty();

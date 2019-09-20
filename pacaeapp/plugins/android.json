@@ -16,6 +16,9 @@
     },
     "cordova-plugin-file-transfer": {
       "PACKAGE_NAME": "com.pacae.app"
+    },
+    "cordova-plugin-network-information": {
+      "PACKAGE_NAME": "com.pacae.app"
     }
   },
   "dependent_plugins": {
