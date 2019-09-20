@@ -66,7 +66,7 @@
   <div class="control-sidebar-bg"></div>
 </div>
 <?php include_once('inc/script.php'); ?>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/js/select2.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>
 <script src="plugins/iCheck/icheck.min.js"></script>
 <script src="plugins/input-mask/jquery.inputmask.js"></script>
 <script src="dist/js/jquery-toast-plugin-master/dist/jquery.toast.min.js"></script>
