@@ -34,5 +34,10 @@
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
     <allow-intent href="market:*" />
+    <icon background="/platforms/android/app/src/main/res/android/icon/hdpi.png" density="hdpi" foreground="/platforms/android/app/src/main/res/android/icon/hdpi.png" />
+    <icon background="/platforms/android/app/src/main/res/android/icon/mdpi.png" density="mdpi" foreground="/platforms/android/app/src/main/res/android/icon/mdpi.png" />
+    <icon background="/platforms/android/app/src/main/res/android/icon/xhdpi.png" density="xhdpi" foreground="/platforms/android/app/src/main/res/android/icon/xhdpi.png" />
+    <icon background="/platforms/android/app/src/main/res/android/icon/xxhdpi.png" density="xxhdpi" foreground="/platforms/android/app/src/main/res/android/icon/xxhdpi.png" />
+    <icon background="/platforms/android/app/src/main/res/android/icon/xxxhdpi.png" density="xxxhdpi" foreground="/platforms/android/app/src/main/res/android/icon/xxxhdpi.png" />
     <preference name="loglevel" value="DEBUG" />
 </widget>

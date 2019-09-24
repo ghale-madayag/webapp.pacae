@@ -1,0 +1,11 @@
+{
+    "android": {
+        "release": {
+            "keystore": "pacae-key.keystore",
+            "storePassword": "Encoder_7",
+            "alias": "pacae-key",
+            "password" : "Encoder_7",
+            "keystoreType": ""
+        }
+    }
+}
